@@ -14,7 +14,7 @@ export default function NavigationLinks() {
   return (
     <Flex as="ul" gap="1" direction={{ base: 'column', md: 'row' }}>
       {links.map((link) => (
-        <Button variant={link.variant} as="li">
+        <Button key={link.label} variant={link.variant} as="li">
           <Link to={link.to}>{link.label}</Link>
         </Button>
       ))}
