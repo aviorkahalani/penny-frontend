@@ -2,6 +2,7 @@ import type { ILink } from '@/interfaces'
 import { useFetchMeQuery, useLogoutMutation } from '@/store'
 import { Button, Flex, Skeleton } from '@chakra-ui/react'
 import { Link } from 'react-router'
+import _ from 'lodash'
 
 export default function NavigationLinks() {
   const { data: user, error, isLoading } = useFetchMeQuery()
@@ -29,25 +30,24 @@ export default function NavigationLinks() {
     </>
   )
 
-  const userButtons = (
-    <>
-      <Button variant="subtle" as="li" onClick={handleLogout}>
-        <Link to="/">Logout</Link>
-      </Button>
-
-      <Button variant="solid" as="li">
-        <Link to="/profile">Profile</Link>
-      </Button>
-    </>
-  )
-
   let content: React.ReactNode = authButtons
   if (isLoading) {
     content = <Skeleton height="5" />
   } else if (error) {
     content = authButtons
   } else if (user) {
-    content = userButtons
+    const [name] = user.name.split(' ')
+    content = (
+      <>
+        <Button variant="subtle" as="li" onClick={handleLogout}>
+          <Link to="/">Logout</Link>
+        </Button>
+
+        <Button variant="solid" as="li">
+          <Link to="/profile">{_.capitalize(name)}</Link>
+        </Button>
+      </>
+    )
   }
 
   return (
