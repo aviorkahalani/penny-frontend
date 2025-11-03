@@ -5,43 +5,60 @@ import Home from '@/pages/Home'
 import Planning from '@/pages/Planning'
 import Tracking from '@/pages/Tracking'
 import Dashboard from '@/pages/Dashboard'
+import Profile from '@/pages/Profile'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
-
-import { isAuthenticated } from './middlewares/isAuthenticated'
+import ProtectedRoute from '@/components/ProtectedRoute'
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    Component: App,
+    element: <App />,
     children: [
       {
         index: true,
-        Component: Home,
+        element: <Home />,
       },
       {
         path: 'planning',
-        Component: Planning,
-        middleware: [isAuthenticated],
+        element: (
+          <ProtectedRoute>
+            <Planning />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'tracking',
-        Component: Tracking,
-        middleware: [isAuthenticated],
+        element: (
+          <ProtectedRoute>
+            <Tracking />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'dashboard',
-        Component: Dashboard,
-        middleware: [isAuthenticated],
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'profile',
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
   {
     path: '/login',
-    Component: Login,
+    element: <Login />,
   },
   {
     path: '/register',
-    Component: Register,
+    element: <Register />,
   },
 ])

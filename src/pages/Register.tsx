@@ -9,17 +9,33 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { PasswordInput } from '@/components/ui/password-input'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import { useRegisterMutation } from '@/store'
+import type { Credentials } from '@/types'
 
 export default function Register() {
-  const [email, setEmail] = useState('')
-  const [name, setName] = useState('')
-  const [password, setPassword] = useState('')
+  const [register, results] = useRegisterMutation()
+  const navigate = useNavigate()
+  const [credentials, setCredentials] = useState<Credentials>({
+    email: '',
+    name: '',
+    password: '',
+  })
+
+  const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    setCredentials((prevCredentials) => ({
+      ...prevCredentials,
+      [ev.target.name]: ev.target.value,
+    }))
+  }
 
   const handleSubmit = (ev: React.FormEvent) => {
     ev.preventDefault()
 
-    console.log('form submitted.')
+    register(credentials).finally(() => {
+      setCredentials({ email: '', name: '', password: '' })
+      navigate('/')
+    })
   }
 
   return (
@@ -36,30 +52,33 @@ export default function Register() {
         <Field.Root>
           <Field.Label>Email</Field.Label>
           <Input
+            name="email"
             placeholder="me@example.com"
-            value={email}
-            onChange={(ev) => setEmail(ev.target.value)}
+            value={credentials.email}
+            onChange={handleChange}
           />
         </Field.Root>
 
         <Field.Root>
           <Field.Label>Name</Field.Label>
           <Input
+            name="name"
             placeholder="John Doe"
-            value={name}
-            onChange={(ev) => setName(ev.target.value)}
+            value={credentials.name}
+            onChange={handleChange}
           />
         </Field.Root>
 
         <Field.Root>
           <Field.Label>Password</Field.Label>
           <PasswordInput
-            value={password}
-            onChange={(ev) => setPassword(ev.target.value)}
+            name="password"
+            value={credentials.password}
+            onChange={handleChange}
           />
         </Field.Root>
 
-        <Button type="submit" width="full">
+        <Button type="submit" width="full" disabled={results.isLoading}>
           Join Now
         </Button>
 
