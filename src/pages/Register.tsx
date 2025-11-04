@@ -48,9 +48,12 @@ export default function Register() {
         Join Now
       </Heading>
 
-      <VStack as="form" onSubmit={handleSubmit}>
-        <Field.Root>
-          <Field.Label>Email</Field.Label>
+      <VStack as="form" gap="5" onSubmit={handleSubmit}>
+        <Field.Root required>
+          <Field.Label>
+            Email
+            <Field.RequiredIndicator />
+          </Field.Label>
           <Input
             name="email"
             placeholder="me@example.com"
@@ -59,8 +62,11 @@ export default function Register() {
           />
         </Field.Root>
 
-        <Field.Root>
-          <Field.Label>Name</Field.Label>
+        <Field.Root required>
+          <Field.Label>
+            Name
+            <Field.RequiredIndicator />
+          </Field.Label>
           <Input
             name="name"
             placeholder="John Doe"
@@ -69,8 +75,11 @@ export default function Register() {
           />
         </Field.Root>
 
-        <Field.Root>
-          <Field.Label>Password</Field.Label>
+        <Field.Root required>
+          <Field.Label>
+            Password
+            <Field.RequiredIndicator />
+          </Field.Label>
           <PasswordInput
             name="password"
             value={credentials.password}

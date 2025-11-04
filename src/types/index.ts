@@ -3,3 +3,10 @@ export interface Credentials {
   name: string
   password: string
 }
+
+export interface User {
+  email: string
+  name: string
+  createdAt: Date
+  updatedAt: Date
+}

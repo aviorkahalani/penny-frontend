@@ -1,11 +1,13 @@
 import type { ILink } from '@/interfaces'
-import { useFetchMeQuery, useLogoutMutation } from '@/store'
-import { Button, Flex, Skeleton } from '@chakra-ui/react'
+import { useLogoutMutation } from '@/store'
+import { Button, Flex } from '@chakra-ui/react'
 import { Link } from 'react-router'
-import _ from 'lodash'
+import { useAppSelector } from '@/hooks'
+import UserActions from './UserActions'
+import GuestActions from './GuestActions'
 
 export default function NavigationLinks() {
-  const { data: user, error, isLoading } = useFetchMeQuery()
+  const user = useAppSelector((state) => state.authSlice.user)
   const [logout] = useLogoutMutation()
 
   const handleLogout = () => {
@@ -18,38 +20,6 @@ export default function NavigationLinks() {
     { to: 'dashboard', label: 'Dashboard', variant: 'ghost' },
   ]
 
-  const authButtons = (
-    <>
-      <Button variant="subtle" as="li">
-        <Link to="/login">Login</Link>
-      </Button>
-
-      <Button variant="solid" as="li">
-        <Link to="/register">Join Now</Link>
-      </Button>
-    </>
-  )
-
-  let content: React.ReactNode = authButtons
-  if (isLoading) {
-    content = <Skeleton height="5" />
-  } else if (error) {
-    content = authButtons
-  } else if (user) {
-    const [name] = user.name.split(' ')
-    content = (
-      <>
-        <Button variant="subtle" as="li" onClick={handleLogout}>
-          <Link to="/">Logout</Link>
-        </Button>
-
-        <Button variant="solid" as="li">
-          <Link to="/profile">{_.capitalize(name)}</Link>
-        </Button>
-      </>
-    )
-  }
-
   return (
     <Flex as="ul" gap="1" direction={{ base: 'column', md: 'row' }}>
       {links.map((link) => (
@@ -58,7 +28,11 @@ export default function NavigationLinks() {
         </Button>
       ))}
 
-      {content}
+      {user ? (
+        <UserActions user={user} onLogout={handleLogout} />
+      ) : (
+        <GuestActions />
+      )}
     </Flex>
   )
 }

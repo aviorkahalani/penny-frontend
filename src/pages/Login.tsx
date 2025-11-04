@@ -29,13 +29,13 @@ export default function Login() {
     }))
   }
 
-  const handleSubmit = (ev: React.FormEvent) => {
+  const handleSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault()
 
-    login(credentials).finally(() => {
-      setCredentials({ email: '', password: '' })
-      navigate('/')
-    })
+    await login(credentials)
+    setCredentials({ email: '', password: '' })
+
+    navigate('/')
   }
 
   return (
@@ -48,9 +48,12 @@ export default function Login() {
         Login
       </Heading>
 
-      <VStack as="form" onSubmit={handleSubmit}>
-        <Field.Root>
-          <Field.Label>Email</Field.Label>
+      <VStack as="form" gap="5" onSubmit={handleSubmit}>
+        <Field.Root required>
+          <Field.Label>
+            Email
+            <Field.RequiredIndicator />
+          </Field.Label>
           <Input
             name="email"
             placeholder="me@example.com"
@@ -59,8 +62,11 @@ export default function Login() {
           />
         </Field.Root>
 
-        <Field.Root>
-          <Field.Label>Password</Field.Label>
+        <Field.Root required>
+          <Field.Label>
+            Password
+            <Field.RequiredIndicator />
+          </Field.Label>
           <PasswordInput
             name="password"
             value={credentials.password}
