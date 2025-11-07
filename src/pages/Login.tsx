@@ -9,13 +9,19 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { PasswordInput } from '@/components/ui/password-input'
+import { toaster } from '@/components/ui/toaster'
 import { Link } from 'react-router'
-import type { Credentials } from '@/types'
+import type { Credentials, User } from '@/interfaces'
 import { useNavigate } from 'react-router'
 import { useLoginMutation } from '@/store'
 
+const options = {
+  duration: 2000,
+  closable: true,
+}
+
 export default function Login() {
-  const [login, results] = useLoginMutation()
+  const [login, { isLoading }] = useLoginMutation()
   const navigate = useNavigate()
   const [credentials, setCredentials] = useState<Omit<Credentials, 'name'>>({
     email: '',
@@ -33,9 +39,16 @@ export default function Login() {
     ev.preventDefault()
 
     await login(credentials)
-    setCredentials({ email: '', password: '' })
-
-    navigate('/')
+      .unwrap()
+      .then((user: User) => {
+        setCredentials({ email: '', password: '' })
+        toaster.create({
+          ...options,
+          type: 'success',
+          description: `${user.name}, Good the have you back`,
+        })
+        navigate('/')
+      })
   }
 
   return (
@@ -74,7 +87,7 @@ export default function Login() {
           />
         </Field.Root>
 
-        <Button type="submit" width="full" disabled={results.isLoading}>
+        <Button type="submit" width="full" disabled={isLoading}>
           Login
         </Button>
 

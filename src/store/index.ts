@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { authApi } from './apis/authApi'
 import { authSlice } from './slices/authSlice'
+import { errorLogger } from './middlewares/errorLogger'
 
 export const store = configureStore({
   reducer: {
@@ -9,7 +10,7 @@ export const store = configureStore({
     [authSlice.reducerPath]: authSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(authApi.middleware)
+    return getDefaultMiddleware().concat(authApi.middleware).concat(errorLogger)
   },
 })
 

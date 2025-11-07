@@ -11,7 +11,7 @@ import {
 import { PasswordInput } from '@/components/ui/password-input'
 import { Link, useNavigate } from 'react-router'
 import { useRegisterMutation } from '@/store'
-import type { Credentials } from '@/types'
+import type { Credentials } from '@/interfaces'
 
 export default function Register() {
   const [register, results] = useRegisterMutation()

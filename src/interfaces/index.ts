@@ -19,3 +19,16 @@ export interface User {
   updatedAt: Date
   __v: number
 }
+
+export interface ErrorResponse {
+  success: boolean
+  code: number
+  message: string
+  details?: { path: string; message: string }[]
+}
+
+export interface Credentials {
+  email: string
+  name: string
+  password: string
+}

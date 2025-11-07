@@ -1,5 +1,5 @@
 import type { User } from '@/interfaces'
-import type { Credentials } from '@/types'
+import type { Credentials } from '@/interfaces'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setIsLoading, setUser } from '../slices/authSlice'
 
@@ -8,7 +8,10 @@ const BASE_URL = 'http://localhost:3030/api/auth'
 export const authApi = createApi({
   reducerPath: 'authApi',
   tagTypes: ['auth'],
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: BASE_URL,
+    credentials: 'include',
+  }),
   endpoints(builder) {
     return {
       fetchMe: builder.query<User, void>({
@@ -18,8 +21,7 @@ export const authApi = createApi({
           try {
             const { data: user } = await queryFulfilled
             dispatch(setUser(user))
-          } catch (error: unknown) {
-            console.log(error)
+          } catch {
             dispatch(setUser(null))
           } finally {
             dispatch(setIsLoading(false))
