@@ -5,7 +5,7 @@ import type { Middleware } from '@reduxjs/toolkit'
 import type { ErrorResponse } from '@/interfaces'
 
 const DEFAULT_ERR_MESSAGE = 'Something went wrong'
-const UNAUTHORIZED_CODE = 404
+const UNAUTHORIZED_CODE = 401
 
 export const errorLogger: Middleware = () => (next) => (action) => {
   if (isRejectedWithValue(action)) {
