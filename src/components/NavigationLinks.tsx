@@ -1,17 +1,16 @@
 import type { ILink } from '@/interfaces'
-import { useLogoutMutation } from '@/store'
+import { useFetchMeQuery, useLogoutMutation } from '@/store'
 import { Button, Flex } from '@chakra-ui/react'
 import { Link } from 'react-router'
-import { useAppSelector } from '@/hooks'
 import UserActions from './UserActions'
 import GuestActions from './GuestActions'
 
 export default function NavigationLinks() {
-  const user = useAppSelector((state) => state.authSlice.user)
+  const { data: user } = useFetchMeQuery()
   const [logout] = useLogoutMutation()
 
-  const handleLogout = () => {
-    logout()
+  const handleLogout = async () => {
+    await logout()
   }
 
   const links: ILink[] = [
