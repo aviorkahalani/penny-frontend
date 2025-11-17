@@ -1,7 +1,7 @@
-import _ from 'lodash'
-import type { User } from '@/interfaces'
-import { Button } from '@chakra-ui/react'
 import { Link } from 'react-router'
+import { Button } from '@chakra-ui/react'
+import { capitalize } from '@/utils/helpers'
+import type { User } from '@/interfaces'
 
 interface UserActionsProps {
   user: User
@@ -15,7 +15,7 @@ export default function UserActions({ user, onLogout }: UserActionsProps) {
         Logout
       </Button>
       <Button variant="solid" as="li" bg="teal.solid" color="white">
-        <Link to="/profile">{_.capitalize(user.name)}</Link>
+        <Link to="/profile">{capitalize(user.name)}</Link>
       </Button>
     </>
   )
