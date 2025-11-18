@@ -1,16 +1,12 @@
-import { Navigate } from 'react-router'
+import { Navigate, Outlet } from 'react-router'
 import { useFetchMeQuery } from '@/store'
 
-interface ProtectedRouteProps {
-  children: React.ReactElement
-}
+export default function ProtectedRoute() {
+  const { data: user, error } = useFetchMeQuery()
 
-export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const { data: user, error, isLoading } = useFetchMeQuery()
+  if (error) return <Navigate to="/" replace />
 
-  if (!isLoading && (error || !user)) {
-    return <Navigate to="/login" replace />
-  }
+  if (!user) return <Navigate to="/login" replace />
 
-  return children
+  return <Outlet />
 }
