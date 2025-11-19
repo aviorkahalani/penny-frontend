@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router'
+import { authMiddleware } from './middlewares/auth'
 
 import App from '@/App'
 import Home from '@/pages/Home'
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
+        middleware: [authMiddleware],
         Component: ProtectedRoute,
         children: [
           {
