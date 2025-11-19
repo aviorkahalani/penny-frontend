@@ -1,19 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { errorLogger } from './middlewares/errorLogger'
-import { auth } from './apis/auth'
-import { budget } from './apis/budget'
+import { base } from './apis/base'
 
 export const store = configureStore({
   reducer: {
-    [auth.reducerPath]: auth.reducer,
-    [budget.reducerPath]: budget.reducer,
+    [base.reducerPath]: base.reducer,
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware()
-      .concat(errorLogger)
-      .concat(auth.middleware)
-      .concat(budget.middleware)
+    return getDefaultMiddleware().concat(errorLogger).concat(base.middleware)
   },
 })
 
