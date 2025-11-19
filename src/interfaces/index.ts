@@ -32,3 +32,15 @@ export interface Credentials {
   name: string
   password: string
 }
+
+export interface Budget {
+  _id: string
+  userId: string
+  name: string
+  currency: 'NIS' | 'USD'
+  notes?: string
+  date: {
+    year: number
+    month: number
+  }
+}
