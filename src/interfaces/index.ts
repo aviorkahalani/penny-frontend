@@ -43,4 +43,9 @@ export interface Budget {
     year: number
     month: number
   }
+  createdAt: Date
+  updatedAt: Date
+  __v: number
 }
+
+export type Currency = 'NIS' | 'USD'

@@ -1,3 +1,4 @@
+import { createListCollection } from '@chakra-ui/react'
 import type { ErrorResponse } from '@/interfaces'
 
 export const isErrorResponse = (value: unknown): value is ErrorResponse => {
@@ -19,4 +20,14 @@ export const capitalize = (str: string) => {
       return firstLetter + restOfWord
     })
     .join(' ')
+}
+
+export const createCollectionList = (start: number, end: number) => {
+  const items = []
+
+  for (let i = start; i <= end; i++) {
+    items.push({ label: i.toString(), value: i.toString() })
+  }
+
+  return createListCollection({ items })
 }

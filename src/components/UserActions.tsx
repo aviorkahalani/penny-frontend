@@ -14,7 +14,7 @@ export default function UserActions({ user, onLogout }: UserActionsProps) {
       <Button variant="subtle" as="li" onClick={onLogout}>
         Logout
       </Button>
-      <Button variant="solid" as="li" bg="teal.solid" color="white">
+      <Button variant="solid" as="li">
         <Link to="/profile">{capitalize(user.name)}</Link>
       </Button>
     </>

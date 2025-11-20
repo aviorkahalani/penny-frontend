@@ -11,10 +11,10 @@ export default function App() {
   return (
     <>
       <Header />
-      <Container as="main" paddingBlock="20" maxWidth="5xl">
+      <Container as="main" paddingBlock="20" maxWidth="5xl" height="full">
         <Outlet />
       </Container>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

@@ -4,9 +4,9 @@ import type { MiddlewareFunction } from 'react-router'
 
 export const authMiddleware: MiddlewareFunction = (_, next) => {
   const state = store.getState()
-  const { data: user } = auth.endpoints.fetchMe.select()(state)
+  const { data: user, isUninitialized } = auth.endpoints.fetchMe.select()(state)
 
-  if (!user) throw redirect('/login')
+  if (!user && !isUninitialized) throw redirect('/login')
 
   next()
 }

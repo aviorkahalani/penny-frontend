@@ -3,7 +3,7 @@ import { authMiddleware } from './middlewares/auth'
 
 import App from '@/App'
 import Home from '@/pages/Home'
-import HydrateFallback from '@/components/HydrateFallback'
+// import HydrateFallback from '@/components/HydrateFallback'
 import ProtectedRoute from '@/components/ProtectedRoute'
 import Error from '@/pages/Error'
 
@@ -11,7 +11,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     Component: App,
-    hydrateFallbackElement: <HydrateFallback />,
+    // hydrateFallbackElement: <HydrateFallback />,
     errorElement: <Error />,
     children: [
       {
@@ -28,6 +28,7 @@ export const router = createBrowserRouter([
               Component: (await import('@/pages/Planning')).default,
             }),
           },
+
           {
             path: 'tracking',
             lazy: async () => ({
@@ -44,6 +45,12 @@ export const router = createBrowserRouter([
             path: 'profile',
             lazy: async () => ({
               Component: (await import('@/pages/Profile')).default,
+            }),
+          },
+          {
+            path: 'edit/:id?',
+            lazy: async () => ({
+              Component: (await import('@/pages/Budget')).default,
             }),
           },
         ],
