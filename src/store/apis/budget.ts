@@ -30,6 +30,20 @@ export const budget = base.injectEndpoints({
       invalidatesTags: [{ type: 'Budget', id: 'LIST' }],
     }),
 
+    updateBudget: build.mutation<Budget, Partial<Budget>>({
+      query: (budget) => ({
+        url: 'budget/' + budget._id,
+        method: 'PUT',
+        body: budget,
+      }),
+      invalidatesTags: (result) => [
+        {
+          type: 'Budget',
+          id: result?._id,
+        },
+      ],
+    }),
+
     deleteBudget: build.mutation<Budget, string>({
       query: (id: string) => ({
         url: 'budget/' + id,
@@ -44,5 +58,6 @@ export const {
   useFetchBudgetsQuery,
   useFetchBudgetByIdQuery,
   useCreateBudgetMutation,
+  useUpdateBudgetMutation,
   useDeleteBudgetMutation,
 } = budget

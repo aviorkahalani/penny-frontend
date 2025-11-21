@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { skipToken } from '@reduxjs/toolkit/query'
-import { useCreateBudgetMutation, useFetchBudgetByIdQuery } from '@/store'
+import {
+  useCreateBudgetMutation,
+  useFetchBudgetByIdQuery,
+  useUpdateBudgetMutation,
+} from '@/store'
 import { Heading, VStack } from '@chakra-ui/react'
 import type { Budget, Currency } from '@/interfaces'
 
@@ -19,22 +23,21 @@ export default function Budget() {
   const { id } = useParams<{ id?: string }>()
   const { data, error, isLoading } = useFetchBudgetByIdQuery(id ?? skipToken)
   const [createBudget] = useCreateBudgetMutation()
+  const [updateBudget] = useUpdateBudgetMutation()
   const navigate = useNavigate()
 
-  const [month, setMonth] = useState<string[]>([currentMonth])
-  const [year, setYear] = useState<string[]>([currentYear])
+  const [months, setMonths] = useState<string[]>([currentMonth])
+  const [years, setYears] = useState<string[]>([currentYear])
   const [currency, setCurrency] = useState<Currency>('NIS')
   const [name, setName] = useState<string>('')
   const [notes, setNotes] = useState<string>('')
 
   useEffect(() => {
     if (data) {
-      console.log({ data }) // here the date is good
-
       setName(data.name)
       setCurrency(data.currency)
-      setYear([data.date.year.toString()])
-      setMonth([data.date.month.toString()])
+      setYears([data.date.year.toString()])
+      setMonths([data.date.month.toString()])
       setNotes(data.notes || '')
     }
   }, [data])
@@ -42,15 +45,22 @@ export default function Budget() {
   const handleSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault()
 
-    await createBudget({
+    const [year] = years
+    const [month] = months
+
+    const budget = {
       name,
       currency,
-      date: {
-        year: Number(year.at(0)),
-        month: Number(month.at(0)),
-      },
+      date: { year: Number(year), month: Number(month) },
       notes,
-    })
+    }
+
+    if (data) {
+      await updateBudget({ ...budget, _id: data._id })
+    } else {
+      await createBudget(budget)
+    }
+
     navigate('/planning')
   }
 
@@ -63,8 +73,8 @@ export default function Budget() {
       <Heading mb="4">{data ? 'Edit' : 'Create'} Budget</Heading>
 
       <VStack as="form" gap="4" alignItems="start" onSubmit={handleSubmit}>
-        <MonthField month={month} setMonth={setMonth} />
-        <YearField year={year} setYear={setYear} />
+        <MonthField month={months} setMonth={setMonths} />
+        <YearField year={years} setYear={setYears} />
         <CurrencyField currency={currency} setCurrency={setCurrency} />
         <NameField name={name} setName={setName} />
         <NotesField notes={notes} setNotes={setNotes} />
