@@ -28,10 +28,10 @@ export default function BudgetListItem({
   return (
     <Skeleton loading={loading}>
       <Card.Root
-        onClick={() => navigate('/')}
-        variant="subtle"
-        _hover={{ shadow: 'xs', transition: 'shadow', border: 'ActiveBorder' }}
+        onClick={() => navigate('/budget/' + budget._id)}
+        variant="outline"
         cursor="pointer"
+        _hover={{ shadow: 'sm' }}
       >
         <Card.Header>
           <Text color="fg.subtle" font="small-caption" fontSize="xs">

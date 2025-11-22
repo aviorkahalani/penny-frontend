@@ -53,6 +53,12 @@ export const router = createBrowserRouter([
               Component: (await import('@/pages/Budget')).default,
             }),
           },
+          {
+            path: 'budget/:id',
+            lazy: async () => ({
+              Component: (await import('@/pages/BudgetDetail')).default,
+            }),
+          },
         ],
       },
     ],
