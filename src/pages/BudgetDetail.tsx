@@ -26,10 +26,6 @@ export default function BudgetDetail() {
     { id: '2', name: 'scholarship', plannedAmount: 2000 },
   ]
 
-  const total = defaultIncomeCategories.reduce((acc, category) => {
-    return (acc += category.plannedAmount)
-  }, 0)
-
   const formatCurrency = (currency: Currency) => {
     const map = { NIS: '₪', USD: '$' }
     return map[currency]
@@ -53,7 +49,7 @@ export default function BudgetDetail() {
             </Heading>
           </Stack>
           <Text>
-            <strong>Total:</strong> {total} {formatCurrency(budget.currency)}
+            <Button variant="subtle">Add Category</Button>
           </Text>
         </HStack>
 
@@ -83,8 +79,6 @@ export default function BudgetDetail() {
               ))}
             </Table.Body>
           </Table.Root>
-
-          <Button variant="subtle">Add Category</Button>
         </Stack>
       </Stack>
     )
