@@ -14,6 +14,7 @@ import { Link } from 'react-router'
 import type { Credentials, User } from '@/interfaces'
 import { useNavigate } from 'react-router'
 import { useLoginMutation } from '@/store'
+import { AppLogo } from '@/components/AppLogo'
 
 const options = {
   duration: 2000,
@@ -53,9 +54,7 @@ export default function Login() {
 
   return (
     <Container as="section" pt="10" maxWidth="lg" m="auto">
-      <Link className="logo" to="/">
-        PENNY
-      </Link>
+      <AppLogo />
 
       <Heading as="h1" marginBlock="8">
         Login

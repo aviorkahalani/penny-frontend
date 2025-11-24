@@ -12,6 +12,7 @@ import { PasswordInput } from '@/components/ui/password-input'
 import { Link, useNavigate } from 'react-router'
 import { useRegisterMutation } from '@/store'
 import type { Credentials } from '@/interfaces'
+import { AppLogo } from '@/components/AppLogo'
 
 export default function Register() {
   const [register, results] = useRegisterMutation()
@@ -32,17 +33,17 @@ export default function Register() {
   const handleSubmit = (ev: React.FormEvent) => {
     ev.preventDefault()
 
-    register(credentials).finally(() => {
-      setCredentials({ email: '', name: '', password: '' })
-      navigate('/')
-    })
+    register(credentials)
+      .unwrap()
+      .finally(() => {
+        setCredentials({ email: '', name: '', password: '' })
+        navigate('/')
+      })
   }
 
   return (
     <Container as="section" pt="10" maxWidth="lg" m="auto">
-      <Link className="logo" to="/">
-        PENNY
-      </Link>
+      <AppLogo />
 
       <Heading as="h1" marginBlock="8">
         Join Now

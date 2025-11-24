@@ -1,7 +1,7 @@
-import { Link } from 'react-router'
-import { Container, Button } from '@chakra-ui/react'
+import { Container } from '@chakra-ui/react'
 import MobileNavigation from './MobileNavigation'
 import DesktopNavigation from './DesktopNavigation'
+import { AppLogo } from './AppLogo'
 
 export default function Header() {
   return (
@@ -13,18 +13,7 @@ export default function Header() {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Button
-          padding="0"
-          asChild
-          variant="plain"
-          fontWeight="bold"
-          letterSpacing="wider"
-        >
-          <Link className="logo" to="/">
-            PENNY
-          </Link>
-        </Button>
-
+        <AppLogo />
         <MobileNavigation />
         <DesktopNavigation />
       </Container>
