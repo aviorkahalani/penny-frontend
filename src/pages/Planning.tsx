@@ -1,9 +1,9 @@
 import { Link } from 'react-router'
 import { useFetchBudgetsQuery } from '@/store'
 import { Box, Button, Separator } from '@chakra-ui/react'
-import BudgetList from '@/components/BudgetList'
+import { BudgetList } from '@/components/BudgetList'
 
-export default function Planning() {
+export const Planning = () => {
   const { data: budgets, error, isLoading } = useFetchBudgetsQuery()
 
   return (

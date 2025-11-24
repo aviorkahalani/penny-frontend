@@ -4,7 +4,7 @@ interface SubmitButtonProps {
   text: string
 }
 
-export default function SubmitButton({ text }: SubmitButtonProps) {
+export const SubmitButton = ({ text }: SubmitButtonProps) => {
   return (
     <Button type="submit" variant="solid">
       {text}

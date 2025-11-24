@@ -7,19 +7,18 @@ import {
   useUpdateBudgetMutation,
 } from '@/store'
 import { Heading, VStack } from '@chakra-ui/react'
-import type { Budget, Currency } from '@/interfaces'
-
-import MonthField from '@/components/MonthField'
-import YearField from '@/components/YearField'
-import SubmitButton from '@/components/SubmitButton'
-import CurrencyField from '@/components/CurrencyField'
-import NameField from '@/components/NameField'
-import NotesField from '@/components/NotesField'
+import { MonthField } from '@/components/MonthField'
+import { YearField } from '@/components/YearField'
+import { SubmitButton } from '@/components/SubmitButton'
+import { CurrencyField } from '@/components/CurrencyField'
+import { NameField } from '@/components/NameField'
+import { NotesField } from '@/components/NotesField'
+import type { Currency } from '@/interfaces'
 
 const currentMonth = (new Date().getMonth() + 1).toString()
 const currentYear = new Date().getFullYear().toString()
 
-export default function Budget() {
+export const Budget = () => {
   const { id } = useParams<{ id?: string }>()
   const { data, error, isLoading } = useFetchBudgetByIdQuery(id ?? skipToken)
   const [createBudget] = useCreateBudgetMutation()

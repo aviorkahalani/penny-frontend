@@ -1,8 +1,8 @@
 import { CloseButton, Drawer, Portal } from '@chakra-ui/react'
 import { ListIcon } from '@phosphor-icons/react'
-import NavigationLinks from './NavigationLinks'
+import { NavigationLinks } from '@/components/NavigationLinks'
 
-export default function MobileNavigation() {
+export const MobileNavigation = () => {
   return (
     <Drawer.Root>
       <Drawer.Trigger asChild display={{ md: 'none' }}>

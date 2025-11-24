@@ -1,17 +1,17 @@
 import { createBrowserRouter } from 'react-router'
 import { authMiddleware } from './middlewares/auth'
 
-import App from '@/App'
-import Home from '@/pages/Home'
-// import HydrateFallback from '@/components/HydrateFallback'
-import ProtectedRoute from '@/components/ProtectedRoute'
-import Error from '@/pages/Error'
+import { App } from '@/App'
+import { Home } from '@/pages/Home'
+import { Error } from '@/pages/Error'
+import { HydrateFallback } from '@/components/HydrateFallback'
+import { ProtectedRoute } from '@/components/ProtectedRoute'
 
 export const router = createBrowserRouter([
   {
     path: '/',
     Component: App,
-    // hydrateFallbackElement: <HydrateFallback />,
+    hydrateFallbackElement: <HydrateFallback />,
     errorElement: <Error />,
     children: [
       {
@@ -25,38 +25,38 @@ export const router = createBrowserRouter([
           {
             path: 'planning',
             lazy: async () => ({
-              Component: (await import('@/pages/Planning')).default,
+              Component: (await import('@/pages/Planning')).Planning,
             }),
           },
 
           {
             path: 'tracking',
             lazy: async () => ({
-              Component: (await import('@/pages/Tracking')).default,
+              Component: (await import('@/pages/Tracking')).Tracking,
             }),
           },
           {
             path: 'dashboard',
             lazy: async () => ({
-              Component: (await import('@/pages/Dashboard')).default,
+              Component: (await import('@/pages/Dashboard')).Dashboard,
             }),
           },
           {
             path: 'profile',
             lazy: async () => ({
-              Component: (await import('@/pages/Profile')).default,
+              Component: (await import('@/pages/Profile')).Profile,
             }),
           },
           {
             path: 'edit/:id?',
             lazy: async () => ({
-              Component: (await import('@/pages/Budget')).default,
+              Component: (await import('@/pages/Budget')).Budget,
             }),
           },
           {
             path: 'budget/:id',
             lazy: async () => ({
-              Component: (await import('@/pages/BudgetDetail')).default,
+              Component: (await import('@/pages/BudgetDetail')).BudgetDetail,
             }),
           },
         ],
@@ -66,13 +66,13 @@ export const router = createBrowserRouter([
   {
     path: '/login',
     lazy: async () => ({
-      Component: (await import('@/pages/Login')).default,
+      Component: (await import('@/pages/Login')).Login,
     }),
   },
   {
     path: '/register',
     lazy: async () => ({
-      Component: (await import('@/pages/Register')).default,
+      Component: (await import('@/pages/Register')).Register,
     }),
   },
 ])

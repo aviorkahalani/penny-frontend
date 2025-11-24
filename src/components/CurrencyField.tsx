@@ -8,10 +8,10 @@ interface CurrencyFieldProps {
 
 const currencies = ['NIS', 'USD']
 
-export default function CurrencyField({
+export const CurrencyField = ({
   currency,
   setCurrency,
-}: CurrencyFieldProps) {
+}: CurrencyFieldProps) => {
   return (
     <SegmentGroup.Root
       defaultValue={currency}

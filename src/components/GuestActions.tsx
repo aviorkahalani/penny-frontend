@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/react'
 import { Link } from 'react-router'
 
-export default function GuestActions() {
+export const GuestActions = () => {
   return (
     <>
       <Button variant="subtle" as="li">

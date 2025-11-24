@@ -1,6 +1,6 @@
 import { HStack, Stack, Skeleton, Separator } from '@chakra-ui/react'
 
-export default function BudgetDetailSkeleton() {
+export const BudgetDetailSkeleton = () => {
   const table = (
     <Stack>
       <Skeleton height="6" width="full" />

@@ -5,7 +5,7 @@ interface NameFieldProps {
   setName: (name: string) => void
 }
 
-export default function NameField({ name, setName }: NameFieldProps) {
+export const NameField = ({ name, setName }: NameFieldProps) => {
   return (
     <Field.Root required>
       <Field.Label>

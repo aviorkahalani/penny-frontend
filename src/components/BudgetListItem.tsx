@@ -1,18 +1,15 @@
 import { useNavigate } from 'react-router'
 import { Card, Skeleton, Text } from '@chakra-ui/react'
-import BudgetItemActions from './BudgetItemAction'
-import type { Budget } from '@/interfaces'
+import { BudgetItemActions } from '@/components/BudgetItemAction'
 import { useDeleteBudgetMutation } from '@/store'
+import type { Budget } from '@/interfaces'
 
 interface BudgetListItemProps {
   budget: Budget
   loading: boolean
 }
 
-export default function BudgetListItem({
-  budget,
-  loading,
-}: BudgetListItemProps) {
+export const BudgetListItem = ({ budget, loading }: BudgetListItemProps) => {
   const [deleteBudget] = useDeleteBudgetMutation()
   const navigate = useNavigate()
   const formatedMonth = budget.date.month.toString().padStart(2, '0')

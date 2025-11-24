@@ -11,10 +11,10 @@ import {
 import { PasswordInput } from '@/components/ui/password-input'
 import { Link, useNavigate } from 'react-router'
 import { useRegisterMutation } from '@/store'
-import type { Credentials } from '@/interfaces'
 import { AppLogo } from '@/components/AppLogo'
+import type { Credentials } from '@/interfaces'
 
-export default function Register() {
+export const Register = () => {
   const [register, results] = useRegisterMutation()
   const navigate = useNavigate()
   const [credentials, setCredentials] = useState<Credentials>({

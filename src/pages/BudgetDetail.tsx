@@ -1,12 +1,12 @@
 import { useParams } from 'react-router'
 import { useFetchBudgetByIdQuery } from '@/store'
 import { Stack, Separator } from '@chakra-ui/react'
-import BudgetDetailSkeleton from '@/components/BudgetDetailSkeleton'
+import { BudgetDetailSkeleton } from '@/components/BudgetDetailSkeleton'
 import { ErrorMessage } from '@/components/ErrorMessage'
 import { BudgetHeading } from '@/components/BudgetHeading'
 import { BudgetCategoryTable } from '@/components/BudgetCategoryTable'
 
-export default function BudgetDetail() {
+export const BudgetDetail = () => {
   const { id } = useParams<{ id: string }>()
   const { data, error, isLoading } = useFetchBudgetByIdQuery(id as string)
 

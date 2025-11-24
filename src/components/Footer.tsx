@@ -1,17 +1,13 @@
-import { Text, Container } from '@chakra-ui/react'
+import { Text, Center } from '@chakra-ui/react'
 
-export default function Footer() {
+export const Footer = () => {
   return (
     <footer>
-      <Container
-        display="flex"
-        paddingBlock="4"
-        maxWidth="5xl"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Text>&copy; 2025. Made by Avior Kahalani.</Text>
-      </Container>
+      <Center paddingBlock="4">
+        <Text color="fg.subtle" fontSize="xs">
+          &copy; 2025. Made by Avior Kahalani.
+        </Text>
+      </Center>
     </footer>
   )
 }

@@ -9,7 +9,7 @@ interface YearFieldProps {
 const currentYear = new Date().getFullYear().toString()
 const years = createCollectionList(Number(currentYear), Number(currentYear) + 5)
 
-export default function YearField({ year, setYear }: YearFieldProps) {
+export const YearField = ({ year, setYear }: YearFieldProps) => {
   return (
     <Select.Root
       collection={years}

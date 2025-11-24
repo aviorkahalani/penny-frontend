@@ -1,9 +1,9 @@
 import { Container } from '@chakra-ui/react'
-import MobileNavigation from './MobileNavigation'
-import DesktopNavigation from './DesktopNavigation'
-import { AppLogo } from './AppLogo'
+import { AppLogo } from '@/components/AppLogo'
+import { MobileNavigation } from '@/components/MobileNavigation'
+import { DesktopNavigation } from '@/components/DesktopNavigation'
 
-export default function Header() {
+export const Header = () => {
   return (
     <header>
       <Container

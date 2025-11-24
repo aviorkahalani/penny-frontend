@@ -5,7 +5,7 @@ interface NotesFieldProps {
   setNotes: (notes: string) => void
 }
 
-export default function NotesField({ notes, setNotes }: NotesFieldProps) {
+export const NotesField = ({ notes, setNotes }: NotesFieldProps) => {
   return (
     <Field.Root>
       <Field.Label>Notes</Field.Label>

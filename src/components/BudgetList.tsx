@@ -1,6 +1,6 @@
 import { SimpleGrid } from '@chakra-ui/react'
-import DataMissing from './DataMissing'
-import BudgetListItem from './BudgetListItem'
+import { DataMissing } from '@/components/DataMissing'
+import { BudgetListItem } from '@/components/BudgetListItem'
 import type { Budget } from '@/interfaces'
 import type { SerializedError } from '@reduxjs/toolkit'
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query'
@@ -11,11 +11,7 @@ interface BudgetListProps {
   loading: boolean
 }
 
-export default function BudgetList({
-  budgets,
-  error,
-  loading,
-}: BudgetListProps) {
+export const BudgetList = ({ budgets, error, loading }: BudgetListProps) => {
   if (error) return <DataMissing message="No budgets yet..." />
 
   return (

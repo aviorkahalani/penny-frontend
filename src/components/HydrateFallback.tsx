@@ -1,6 +1,6 @@
 import { AbsoluteCenter, Spinner, Text } from '@chakra-ui/react'
 
-export default function HydrateFallback() {
+export const HydrateFallback = () => {
   return (
     <AbsoluteCenter display="flex" flexDir="column" gap="1">
       <Spinner size="xl" />

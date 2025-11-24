@@ -21,7 +21,7 @@ const options = {
   closable: true,
 }
 
-export default function Login() {
+export const Login = () => {
   const [login, { isLoading }] = useLoginMutation()
   const navigate = useNavigate()
   const [credentials, setCredentials] = useState<Omit<Credentials, 'name'>>({

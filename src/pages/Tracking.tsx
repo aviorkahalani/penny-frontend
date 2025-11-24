@@ -1,4 +1,4 @@
-export default function Tracking() {
+export const Tracking = () => {
   return (
     <div>
       <h1>Tracking</h1>

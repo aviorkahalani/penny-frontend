@@ -8,7 +8,7 @@ interface MonthFieldProps {
 
 const months = createCollectionList(1, 12)
 
-export default function MonthField({ month, setMonth }: MonthFieldProps) {
+export const MonthField = ({ month, setMonth }: MonthFieldProps) => {
   return (
     <Select.Root
       collection={months}

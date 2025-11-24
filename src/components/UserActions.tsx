@@ -8,7 +8,7 @@ interface UserActionsProps {
   onLogout: () => void
 }
 
-export default function UserActions({ user, onLogout }: UserActionsProps) {
+export const UserActions = ({ user, onLogout }: UserActionsProps) => {
   return (
     <>
       <Button variant="subtle" as="li" onClick={onLogout}>

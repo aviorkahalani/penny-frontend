@@ -11,10 +11,10 @@ interface BudgetItemActionsProps {
   onDelete: () => void
 }
 
-export default function BudgetItemActions({
+export const BudgetItemActions = ({
   onEdit,
   onDelete,
-}: BudgetItemActionsProps) {
+}: BudgetItemActionsProps) => {
   const handleDuplicate = (ev: React.MouseEvent<HTMLDivElement>) => {
     ev.stopPropagation()
   }

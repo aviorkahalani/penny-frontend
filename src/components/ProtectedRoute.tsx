@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router'
 import { useFetchMeQuery } from '@/store'
 
-export default function ProtectedRoute() {
+export const ProtectedRoute = () => {
   const { data: user, error, isLoading } = useFetchMeQuery()
 
   if (isLoading) return null

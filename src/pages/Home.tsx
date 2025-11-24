@@ -1,7 +1,7 @@
 import { Heading, Text, Button, VStack } from '@chakra-ui/react'
 import { Link } from 'react-router'
 
-export default function Home() {
+export const Home = () => {
   return (
     <section>
       <VStack mb="10" alignItems="start" gap="4" maxWidth="md">
@@ -13,7 +13,7 @@ export default function Home() {
           insights into your financial health — all in one platform
         </Text>
       </VStack>
-      <Button variant="surface" asChild>
+      <Button variant="solid" asChild>
         <Link to="/planning">Start Managing Today</Link>
       </Button>
     </section>
