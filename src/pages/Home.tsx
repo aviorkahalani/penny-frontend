@@ -13,7 +13,7 @@ export const Home = () => {
           insights into your financial health — all in one platform
         </Text>
       </VStack>
-      <Button variant="solid" asChild>
+      <Button size="xl" variant="solid" asChild>
         <Link to="/planning">Start Managing Today</Link>
       </Button>
     </section>
