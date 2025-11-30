@@ -49,6 +49,7 @@ export interface Budget {
 }
 
 export type Currency = 'NIS' | 'USD'
+export type Type = 'income' | 'expense' | 'saving'
 
 export interface Category {
   _id: string

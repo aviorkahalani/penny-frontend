@@ -19,3 +19,4 @@ export type AppDispatch = typeof store.dispatch
 
 export * from './apis/auth'
 export * from './apis/budget'
+export * from './apis/category'

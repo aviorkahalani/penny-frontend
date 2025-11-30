@@ -1,17 +1,14 @@
-import { Button, Heading, HStack, Stack } from '@chakra-ui/react'
+import { Heading, HStack, Stack } from '@chakra-ui/react'
 import { capitalize } from '@/utils/helpers'
+import { CategoryCreateDialog } from './CategoryCreateDialog'
 
 interface BudgetHeadingProps {
+  budgetId: string
   name: string
   date: { year: number; month: number }
-  onCreateCategory: () => void
 }
 
-export const BudgetHeading = ({
-  name,
-  date,
-  onCreateCategory,
-}: BudgetHeadingProps) => {
+export const BudgetHeading = ({ budgetId, name, date }: BudgetHeadingProps) => {
   return (
     <HStack justifyContent="space-between" alignItems="center">
       <Stack>
@@ -22,9 +19,7 @@ export const BudgetHeading = ({
           {capitalize(name)}
         </Heading>
       </Stack>
-      <Button variant="subtle" onClick={onCreateCategory}>
-        Add Category
-      </Button>
+      <CategoryCreateDialog budgetId={budgetId} />
     </HStack>
   )
 }

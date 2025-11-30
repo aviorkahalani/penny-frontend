@@ -17,7 +17,7 @@ export const auth = base.injectEndpoints({
         url: 'auth/register',
         body: credentials,
       }),
-      invalidatesTags: ['Auth', 'Budget'],
+      invalidatesTags: ['Auth', 'Budget', 'Category'],
     }),
 
     login: build.mutation<User, Omit<Credentials, 'name'>>({
@@ -26,7 +26,7 @@ export const auth = base.injectEndpoints({
         url: 'auth/login',
         body: credentials,
       }),
-      invalidatesTags: ['Auth', 'Budget'],
+      invalidatesTags: ['Auth', 'Budget', 'Category'],
     }),
 
     logout: build.mutation<User, void>({
