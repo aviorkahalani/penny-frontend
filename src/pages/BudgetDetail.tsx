@@ -1,10 +1,16 @@
 import { useParams } from 'react-router'
-import { useFetchBudgetByIdQuery, useFetchCategoriesQuery } from '@/store'
+import {
+  useFetchBudgetByIdQuery,
+  useFetchCategoriesQuery,
+  useDeleteCategoryMutation,
+  useUpdateCategoryMutation,
+} from '@/store'
 import { Stack, Separator } from '@chakra-ui/react'
 import { BudgetDetailSkeleton } from '@/components/BudgetDetailSkeleton'
 import { ErrorMessage } from '@/components/ErrorMessage'
 import { BudgetHeading } from '@/components/BudgetHeading'
 import { BudgetCategoryTable } from '@/components/BudgetCategoryTable'
+import type { Category } from '@/interfaces'
 
 export const BudgetDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -16,6 +22,23 @@ export const BudgetDetail = () => {
   const { data: categories } = useFetchCategoriesQuery(budget?._id, {
     skip: !budget?._id,
   })
+
+  const [deleteCategory] = useDeleteCategoryMutation()
+  const [updateCategory] = useUpdateCategoryMutation()
+
+  const handleDelete = (id: string) => {
+    deleteCategory(id)
+  }
+
+  const handleUpdate = (id: string, body: Partial<Category>) => {
+    updateCategory({
+      params: { categoryId: id },
+      body: {
+        budgetId: budget!._id,
+        ...body,
+      },
+    })
+  }
 
   let content: React.ReactNode = null
   if (error) {
@@ -38,6 +61,8 @@ export const BudgetDetail = () => {
               categories ? categories.filter((c) => c.type === 'income') : []
             }
             currency={budget.currency}
+            handleDelete={handleDelete}
+            handleUpdate={handleUpdate}
           />
           <BudgetCategoryTable
             title="expenses"
@@ -45,6 +70,8 @@ export const BudgetDetail = () => {
               categories ? categories.filter((c) => c.type === 'expense') : []
             }
             currency={budget.currency}
+            handleDelete={handleDelete}
+            handleUpdate={handleUpdate}
           />
           <BudgetCategoryTable
             title="savings"
@@ -52,6 +79,8 @@ export const BudgetDetail = () => {
               categories ? categories.filter((c) => c.type === 'saving') : []
             }
             currency={budget.currency}
+            handleDelete={handleDelete}
+            handleUpdate={handleUpdate}
           />
         </Stack>
       </Stack>

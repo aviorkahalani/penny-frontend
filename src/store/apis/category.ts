@@ -1,11 +1,23 @@
-import type { Category } from '@/interfaces'
 import { base } from './base'
+import type { Category } from '@/interfaces'
 
 interface createCategoryBody {
   budgetId: string
   type: 'income' | 'expense' | 'saving'
   name: string
   plannedAmount: number
+}
+
+interface updateCategoryBody {
+  params: {
+    categoryId: string
+  }
+  body: {
+    budgetId: string
+    type?: 'income' | 'expense' | 'saving'
+    name?: string
+    plannedAmount?: number
+  }
 }
 
 export const category = base.injectEndpoints({
@@ -31,7 +43,29 @@ export const category = base.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'Category', id: 'LIST' }],
     }),
+
+    updateCategory: build.mutation<Category, updateCategoryBody>({
+      query: (data) => ({
+        url: 'category/' + data.params.categoryId,
+        method: 'PUT',
+        body: data.body,
+      }),
+      invalidatesTags: [{ type: 'Category', id: 'LIST' }],
+    }),
+
+    deleteCategory: build.mutation<Category, string>({
+      query: (categoryId) => ({
+        url: '/category/' + categoryId,
+        method: 'DELETE',
+      }),
+      invalidatesTags: [{ type: 'Category', id: 'LIST' }],
+    }),
   }),
 })
 
-export const { useFetchCategoriesQuery, useCreateCategoryMutation } = category
+export const {
+  useFetchCategoriesQuery,
+  useCreateCategoryMutation,
+  useUpdateCategoryMutation,
+  useDeleteCategoryMutation,
+} = category
