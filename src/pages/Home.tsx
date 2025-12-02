@@ -1,21 +1,33 @@
-import { Heading, Text, Button, VStack } from '@chakra-ui/react'
+import { Heading, Text, Button, Image, VStack, Stack } from '@chakra-ui/react'
 import { Link } from 'react-router'
 
 export const Home = () => {
   return (
-    <section>
-      <VStack mb="10" alignItems="start" gap="4" maxWidth="md">
-        <Heading as="h1" fontSize="3xl">
-          Manage Your Finances with Confidence
+    <Stack
+      flexDirection={{ base: 'column', md: 'row' }}
+      as="section"
+      justifyContent="space-between"
+      alignItems="center"
+      gap="10"
+    >
+      <VStack alignItems="start" gap="4">
+        <Heading
+          as="h1"
+          fontSize={{ base: '4xl', md: '6xl' }}
+          lineHeight="normal"
+          fontWeight="black"
+        >
+          INVEST IN YOUR FUTURE
         </Heading>
-        <Text as="p">
-          Streamline your budgeting, track expenses effortlessly, and gain clear
-          insights into your financial health — all in one platform
+        <Text as="p" mb="10" color="fg.muted" fontSize="lg">
+          We help you grow your money.
         </Text>
+        <Button size="xl" variant="solid" asChild>
+          <Link to="/planning">Start Managing Today</Link>
+        </Button>
       </VStack>
-      <Button size="xl" variant="solid" asChild>
-        <Link to="/planning">Start Managing Today</Link>
-      </Button>
-    </section>
+
+      <Image w={{ md: '1/2' }} flex="1" src="/public/illustration.svg" />
+    </Stack>
   )
 }
