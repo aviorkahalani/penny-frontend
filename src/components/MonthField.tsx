@@ -1,12 +1,12 @@
 import { Portal, Select } from '@chakra-ui/react'
-import { createCollectionList } from '@/utils/helpers'
+import { createCollection } from '@/utils/helpers'
 
 interface MonthFieldProps {
   month: string[]
   setMonth: (months: string[]) => void
 }
 
-const months = createCollectionList(1, 12)
+const months = createCollection(1, 12)
 
 export const MonthField = ({ month, setMonth }: MonthFieldProps) => {
   return (

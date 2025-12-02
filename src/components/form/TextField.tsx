@@ -4,14 +4,20 @@ interface TextFieldProps {
   label: string
   value: string
   setValue: (newValue: string) => void
+  required?: boolean
 }
 
-export const TextField = ({ label, value, setValue }: TextFieldProps) => {
+export const TextField = ({
+  label,
+  value,
+  setValue,
+  required = true,
+}: TextFieldProps) => {
   return (
-    <Field.Root required>
+    <Field.Root required={required}>
       <Field.Label>
         {label}
-        <Field.RequiredIndicator />
+        {required && <Field.RequiredIndicator />}
       </Field.Label>
       <Input value={value} onChange={(ev) => setValue(ev.target.value)} />
     </Field.Root>

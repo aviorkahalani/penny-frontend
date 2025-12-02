@@ -22,7 +22,7 @@ export const capitalize = (str: string) => {
     .join(' ')
 }
 
-export const createCollectionList = (start: number, end: number) => {
+export const createCollection = (start: number, end: number) => {
   const items = []
 
   for (let i = start; i <= end; i++) {

@@ -1,13 +1,8 @@
 import { useNavigate } from 'react-router'
 import { useDeleteBudgetMutation } from '@/store'
 import { Box, Button, Card, Menu, Portal, Text } from '@chakra-ui/react'
+import { DotsThreeIcon, PenIcon, TrashIcon } from '@phosphor-icons/react'
 import type { Budget } from '@/interfaces'
-import {
-  CopyIcon,
-  DotsThreeIcon,
-  PenIcon,
-  TrashIcon,
-} from '@phosphor-icons/react'
 
 interface BudgetPreviewProps {
   budget: Budget
@@ -16,10 +11,6 @@ interface BudgetPreviewProps {
 export const BudgetPreview = ({ budget }: BudgetPreviewProps) => {
   const navigate = useNavigate()
   const [deleteBudget] = useDeleteBudgetMutation()
-
-  const handleDuplicate = () => {
-    // todo: add duplicate on backend and store
-  }
 
   const handleEdit = () => {
     navigate(`/edit/${budget._id}`)
@@ -53,10 +44,6 @@ export const BudgetPreview = ({ budget }: BudgetPreviewProps) => {
           <Portal>
             <Menu.Positioner>
               <Menu.Content>
-                <Menu.Item value="duplicate" onClick={handleDuplicate}>
-                  <CopyIcon />
-                  <Box flex="1">Duplicate</Box>
-                </Menu.Item>
                 <Menu.Item value="edit" onClick={handleEdit}>
                   <PenIcon />
                   <Box flex="1">Edit</Box>

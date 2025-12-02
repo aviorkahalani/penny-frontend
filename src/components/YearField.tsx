@@ -1,5 +1,5 @@
 import { Portal, Select } from '@chakra-ui/react'
-import { createCollectionList } from '@/utils/helpers'
+import { createCollection } from '@/utils/helpers'
 
 interface YearFieldProps {
   year: string[]
@@ -7,7 +7,7 @@ interface YearFieldProps {
 }
 
 const currentYear = new Date().getFullYear().toString()
-const years = createCollectionList(Number(currentYear), Number(currentYear) + 5)
+const years = createCollection(Number(currentYear), Number(currentYear) + 5)
 
 export const YearField = ({ year, setYear }: YearFieldProps) => {
   return (
