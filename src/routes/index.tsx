@@ -4,7 +4,7 @@ import { authMiddleware } from './middlewares/auth'
 import { App } from '@/App'
 import { Home } from '@/pages/Home'
 import { Error } from '@/pages/Error'
-import { HydrateFallback } from '@/components/HydrateFallback'
+import { HydrateFallback } from '@/components/global/HydrateFallback'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 
 export const router = createBrowserRouter([

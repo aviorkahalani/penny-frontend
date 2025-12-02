@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router'
 import { useLoginMutation } from '@/store'
 import { Button, Container, VStack, Text } from '@chakra-ui/react'
 
-import { AppLogo } from '@/components/AppLogo'
+import { AppLogo } from '@/components/global/AppLogo'
 import { TextField } from '@/components/form/TextField'
 import { PasswordField } from '@/components/form/PasswordField'
 import { FormHeader } from '@/components/form/FormHeader'

@@ -1,5 +1,5 @@
 import { Container } from '@chakra-ui/react'
-import { AppLogo } from '@/components/AppLogo'
+import { AppLogo } from '@/components/global/AppLogo'
 import { MobileNavigation } from '@/components/MobileNavigation'
 import { DesktopNavigation } from '@/components/DesktopNavigation'
 
