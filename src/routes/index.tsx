@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
           {
             path: 'profile',
             lazy: async () => ({
-              Component: (await import('@/pages/Profile')).Profile,
+              Component: (await import('@/pages/auth/Profile')).Profile,
             }),
           },
           {
@@ -66,13 +66,13 @@ export const router = createBrowserRouter([
   {
     path: '/login',
     lazy: async () => ({
-      Component: (await import('@/pages/Login')).Login,
+      Component: (await import('@/pages/auth/Login')).Login,
     }),
   },
   {
     path: '/register',
     lazy: async () => ({
-      Component: (await import('@/pages/Register')).Register,
+      Component: (await import('@/pages/auth/Register')).Register,
     }),
   },
 ])
