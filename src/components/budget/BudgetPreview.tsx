@@ -12,6 +12,10 @@ export const BudgetPreview = ({ budget }: BudgetPreviewProps) => {
   const navigate = useNavigate()
   const [deleteBudget] = useDeleteBudgetMutation()
 
+  const handleClick = () => {
+    navigate(`/budget/${budget._id}`)
+  }
+
   const handleEdit = () => {
     navigate(`/edit/${budget._id}`)
   }
@@ -23,7 +27,7 @@ export const BudgetPreview = ({ budget }: BudgetPreviewProps) => {
   const paddedMonth = budget.date.month.toString().padStart(2, '0')
 
   return (
-    <Card.Root onClick={() => {}} cursor="pointer" _hover={{ shadow: 'sm' }}>
+    <Card.Root onClick={handleClick} cursor="pointer" _hover={{ shadow: 'sm' }}>
       <Card.Header>
         <Text color="fg.subtle" fontSize="xs">
           {budget.name.toUpperCase()}

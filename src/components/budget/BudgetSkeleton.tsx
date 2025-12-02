@@ -1,6 +1,6 @@
 import { HStack, Stack, Skeleton, Separator } from '@chakra-ui/react'
 
-export const BudgetDetailSkeleton = () => {
+export const BudgetSkeleton = () => {
   const table = (
     <Stack>
       <Skeleton height="6" width="full" />
@@ -12,12 +12,12 @@ export const BudgetDetailSkeleton = () => {
 
   return (
     <Stack gap="5">
-      <HStack alignItems="flex-start" justifyContent="space-between">
+      <HStack alignItems="center" justifyContent="space-between">
         <Stack>
           <Skeleton height="8" width="xs" />
           <Skeleton height="3" width="xs" mb="2" />
         </Stack>
-        <Skeleton height="6" width="xs" />
+        <Skeleton height="8" width="60" />
       </HStack>
 
       <Separator />

@@ -13,7 +13,7 @@ import type { Category, Currency } from '@/interfaces'
 import { DotsThreeIcon, TrashIcon } from '@phosphor-icons/react'
 
 interface BudgetCategoryTableProps {
-  title: 'incomes' | 'expenses' | 'savings'
+  title: string
   categories: Category[]
   currency: Currency
   handleDelete: (id: string) => void
