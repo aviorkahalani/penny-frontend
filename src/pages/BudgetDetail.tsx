@@ -46,6 +46,10 @@ export const BudgetDetail = () => {
   } else if (isLoading) {
     return (content = <BudgetDetailSkeleton />)
   } else if (budget) {
+    const incomes = categories?.filter((c) => c.type === 'income') || []
+    const expenses = categories?.filter((c) => c.type === 'expense') || []
+    const savings = categories?.filter((c) => c.type === 'saving') || []
+
     content = (
       <Stack as="section" gap="4">
         <BudgetHeading
@@ -55,33 +59,39 @@ export const BudgetDetail = () => {
         />
         <Separator />
         <Stack gap="10">
-          <BudgetCategoryTable
-            title="incomes"
-            categories={
-              categories ? categories.filter((c) => c.type === 'income') : []
-            }
-            currency={budget.currency}
-            handleDelete={handleDelete}
-            handleUpdate={handleUpdate}
-          />
-          <BudgetCategoryTable
-            title="expenses"
-            categories={
-              categories ? categories.filter((c) => c.type === 'expense') : []
-            }
-            currency={budget.currency}
-            handleDelete={handleDelete}
-            handleUpdate={handleUpdate}
-          />
-          <BudgetCategoryTable
-            title="savings"
-            categories={
-              categories ? categories.filter((c) => c.type === 'saving') : []
-            }
-            currency={budget.currency}
-            handleDelete={handleDelete}
-            handleUpdate={handleUpdate}
-          />
+          {incomes.length > 0 && (
+            <BudgetCategoryTable
+              title="incomes"
+              categories={incomes}
+              currency={budget.currency}
+              handleDelete={handleDelete}
+              handleUpdate={handleUpdate}
+            />
+          )}
+
+          {expenses.length > 0 && (
+            <BudgetCategoryTable
+              title="expenses"
+              categories={
+                categories ? categories.filter((c) => c.type === 'expense') : []
+              }
+              currency={budget.currency}
+              handleDelete={handleDelete}
+              handleUpdate={handleUpdate}
+            />
+          )}
+
+          {savings.length > 0 && (
+            <BudgetCategoryTable
+              title="savings"
+              categories={
+                categories ? categories.filter((c) => c.type === 'saving') : []
+              }
+              currency={budget.currency}
+              handleDelete={handleDelete}
+              handleUpdate={handleUpdate}
+            />
+          )}
         </Stack>
       </Stack>
     )

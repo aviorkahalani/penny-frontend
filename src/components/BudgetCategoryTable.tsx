@@ -62,7 +62,7 @@ export const BudgetCategoryTable = ({
       </Table.Cell>
 
       {hasCategories && (
-        <Table.Cell w="0.5" textAlign="end">
+        <Table.Cell w="1">
           <Menu.Root closeOnSelect variant="subtle">
             <Menu.Trigger asChild>
               <Button variant="ghost" onClick={(ev) => ev.stopPropagation()}>
@@ -101,9 +101,8 @@ export const BudgetCategoryTable = ({
             <Table.ColumnHeader textAlign="end">
               Planned Amount
             </Table.ColumnHeader>
-            {hasCategories && (
-              <Table.ColumnHeader textAlign="end"></Table.ColumnHeader>
-            )}
+
+            <Table.ColumnHeader w="1">Actions</Table.ColumnHeader>
           </Table.Row>
         </Table.Header>
         <Table.Body>{hasCategories && renderedCategories}</Table.Body>
