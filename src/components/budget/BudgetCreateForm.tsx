@@ -7,6 +7,7 @@ import { createCollection } from '@/utils/helpers'
 import { SelectField } from '../form/SelectField'
 import { TextField } from '../form/TextField'
 import { RadioField } from '../form/RadioField'
+import { TextareaField } from '../form/TextareaField'
 import { CoinIcon, CurrencyDollarIcon } from '@phosphor-icons/react'
 import type { Currency } from '@/interfaces'
 
@@ -67,8 +68,8 @@ export const BudgetCreateForm = () => {
         setValue={setCurrency}
       />
 
-      <TextField label="Name" value={name} setValue={setName} />
-      <TextField label="Notes" value={notes} setValue={setNotes} required={false} />
+      <TextField label="name" value={name} setValue={setName} />
+      <TextareaField label="notes" value={notes} setValue={setNotes} />
       <Button type="submit">Create Budget</Button>
     </Stack>
   )

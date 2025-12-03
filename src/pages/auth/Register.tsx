@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Button, Container, VStack, Text } from '@chakra-ui/react'
 import { Link, useNavigate } from 'react-router'
 import { useRegisterMutation } from '@/store'
-import { AppLogo } from '@/components/global/AppLogo'
+import { Logo } from '@/components/global/Logo'
 import { FormHeader } from '@/components/form/FormHeader'
 import { TextField } from '@/components/form/TextField'
 import { PasswordField } from '@/components/form/PasswordField'
@@ -19,12 +19,13 @@ export const Register = () => {
     ev.preventDefault()
 
     await register({ email, name, password })
-    navigate('/')
+      .unwrap()
+      .then(() => navigate('/'))
   }
 
   return (
     <Container as="section" pt="10" maxWidth="lg" m="auto">
-      <AppLogo />
+      <Logo />
 
       <VStack alignItems="start" as="form" gap="5" onSubmit={handleSubmit}>
         <FormHeader text="register" />

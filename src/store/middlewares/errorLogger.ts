@@ -1,5 +1,6 @@
+import _ from 'lodash'
 import { isRejectedWithValue } from '@reduxjs/toolkit'
-import { isErrorResponse, capitalize } from '@/utils/helpers'
+import { isErrorResponse } from '@/utils/helpers'
 import { toaster } from '@/components/ui/toaster'
 import type { Middleware } from '@reduxjs/toolkit'
 import type { ErrorResponse } from '@/interfaces'
@@ -18,7 +19,7 @@ export const errorLogger: Middleware = () => (next) => (action) => {
       type: 'error',
       duration: 2000,
       closable: true,
-      description: isErrorResponse(data) ? capitalize(data.message) : DEFAULT_ERR_MESSAGE,
+      description: isErrorResponse(data) ? _.capitalize(data.message) : DEFAULT_ERR_MESSAGE,
     })
   }
 

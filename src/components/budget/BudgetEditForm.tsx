@@ -8,6 +8,7 @@ import { createCollection } from '@/utils/helpers'
 import { RadioField } from '../form/RadioField'
 import { CoinIcon, CurrencyDollarIcon } from '@phosphor-icons/react'
 import { TextField } from '../form/TextField'
+import { TextareaField } from '../form/TextareaField'
 import type { Currency } from '@/interfaces'
 
 interface BudgetEditFormProps {
@@ -86,8 +87,8 @@ export const BudgetEditForm = ({ budgetId }: BudgetEditFormProps) => {
           setValue={setCurrency}
         />
 
-        <TextField label="Name" value={name} setValue={setName} />
-        <TextField label="Notes" value={notes} setValue={setNotes} required={false} />
+        <TextField label="name" value={name} setValue={setName} />
+        <TextareaField label="notes" value={notes} setValue={setNotes} />
         <Button type="submit">Update Budget</Button>
       </Stack>
     )

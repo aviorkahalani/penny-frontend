@@ -1,4 +1,4 @@
-import { Heading, Text, Button, Image, VStack, Stack } from '@chakra-ui/react'
+import { Heading, Text, Button, Image, VStack, Stack, Highlight } from '@chakra-ui/react'
 import { Link } from 'react-router'
 
 export const Home = () => {
@@ -17,7 +17,12 @@ export const Home = () => {
           lineHeight="normal"
           fontWeight="black"
         >
-          INVEST IN YOUR FUTURE
+          <Highlight
+            query="FUTURE"
+            styles={{ bg: 'colorPalette.muted', color: 'colorPalette.solid' }}
+          >
+            INVEST IN YOUR FUTURE
+          </Highlight>
         </Heading>
         <Text as="p" mb="10" color="fg.muted" fontSize="lg">
           We help you grow your money.
@@ -27,7 +32,7 @@ export const Home = () => {
         </Button>
       </VStack>
 
-      <Image w={{ md: '1/2' }} flex="1" src="/public/illustration.svg" />
+      <Image w={{ md: '1/2' }} flex="1" src="/illustration.svg" />
     </Stack>
   )
 }

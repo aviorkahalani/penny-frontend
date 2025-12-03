@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router'
 import { useLoginMutation } from '@/store'
 import { Button, Container, VStack, Text } from '@chakra-ui/react'
 
-import { AppLogo } from '@/components/global/AppLogo'
+import { Logo } from '@/components/global/Logo'
 import { TextField } from '@/components/form/TextField'
 import { PasswordField } from '@/components/form/PasswordField'
 import { FormHeader } from '@/components/form/FormHeader'
@@ -19,12 +19,13 @@ export const Login = () => {
     ev.preventDefault()
 
     await login({ email, password })
-    navigate('/')
+      .unwrap()
+      .then(() => navigate('/'))
   }
 
   return (
     <Container as="section" pt="10" maxWidth="lg" m="auto">
-      <AppLogo />
+      <Logo />
 
       <VStack alignItems="start" as="form" gap="5" onSubmit={handleSubmit}>
         <FormHeader text="login" />

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { Field, Input } from '@chakra-ui/react'
 
 interface TextFieldProps {
@@ -11,7 +12,7 @@ export const TextField = ({ label, value, setValue, required = true }: TextField
   return (
     <Field.Root required={required}>
       <Field.Label>
-        {label}
+        {_.capitalize(label)}
         {required && <Field.RequiredIndicator />}
       </Field.Label>
       <Input value={value} onChange={(ev) => setValue(ev.target.value)} />

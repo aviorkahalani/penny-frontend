@@ -1,14 +1,5 @@
-import {
-  Box,
-  Button,
-  Editable,
-  Heading,
-  Menu,
-  Portal,
-  Stack,
-  Table,
-} from '@chakra-ui/react'
-import { capitalize } from '@/utils/helpers'
+import _ from 'lodash'
+import { Box, Button, Editable, Heading, Menu, Portal, Stack, Table } from '@chakra-ui/react'
 import type { Category, Currency } from '@/interfaces'
 import { DotsThreeIcon, TrashIcon } from '@phosphor-icons/react'
 
@@ -50,9 +41,7 @@ export const BudgetCategoryTable = ({
         <Editable.Root
           justifyContent="end"
           value={plannedAmount.toString()}
-          onValueChange={(ev) =>
-            handleUpdate(_id, { plannedAmount: Number(ev.value) })
-          }
+          onValueChange={(ev) => handleUpdate(_id, { plannedAmount: Number(ev.value) })}
           placeholder="Click to edit"
         >
           <Editable.Preview />
@@ -72,11 +61,7 @@ export const BudgetCategoryTable = ({
             <Portal>
               <Menu.Positioner>
                 <Menu.Content>
-                  <Menu.Item
-                    value="delete"
-                    color="red"
-                    onClick={() => handleDelete(_id)}
-                  >
+                  <Menu.Item value="delete" color="red" onClick={() => handleDelete(_id)}>
                     <TrashIcon />
                     <Box flex="1">Delete</Box>
                   </Menu.Item>
@@ -92,15 +77,13 @@ export const BudgetCategoryTable = ({
   return (
     <Stack align="flex-start">
       <Heading size="lg" color="fg.info">
-        {capitalize(title)}
+        {_.capitalize(title)}
       </Heading>
       <Table.Root size="md" variant="outline">
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeader>Name</Table.ColumnHeader>
-            <Table.ColumnHeader textAlign="end">
-              Planned Amount
-            </Table.ColumnHeader>
+            <Table.ColumnHeader textAlign="end">Planned Amount</Table.ColumnHeader>
 
             <Table.ColumnHeader w="1">Actions</Table.ColumnHeader>
           </Table.Row>
