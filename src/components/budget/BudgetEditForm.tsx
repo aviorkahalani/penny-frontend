@@ -87,12 +87,7 @@ export const BudgetEditForm = ({ budgetId }: BudgetEditFormProps) => {
         />
 
         <TextField label="Name" value={name} setValue={setName} />
-        <TextField
-          label="Notes"
-          value={notes}
-          setValue={setNotes}
-          required={false}
-        />
+        <TextField label="Notes" value={notes} setValue={setNotes} required={false} />
         <Button type="submit">Update Budget</Button>
       </Stack>
     )

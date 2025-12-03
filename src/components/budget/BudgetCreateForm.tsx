@@ -68,12 +68,7 @@ export const BudgetCreateForm = () => {
       />
 
       <TextField label="Name" value={name} setValue={setName} />
-      <TextField
-        label="Notes"
-        value={notes}
-        setValue={setNotes}
-        required={false}
-      />
+      <TextField label="Notes" value={notes} setValue={setNotes} required={false} />
       <Button type="submit">Create Budget</Button>
     </Stack>
   )

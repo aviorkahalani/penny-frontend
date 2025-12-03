@@ -18,9 +18,7 @@ export const errorLogger: Middleware = () => (next) => (action) => {
       type: 'error',
       duration: 2000,
       closable: true,
-      description: isErrorResponse(data)
-        ? capitalize(data.message)
-        : DEFAULT_ERR_MESSAGE,
+      description: isErrorResponse(data) ? capitalize(data.message) : DEFAULT_ERR_MESSAGE,
     })
   }
 

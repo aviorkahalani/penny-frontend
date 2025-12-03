@@ -40,9 +40,4 @@ export const auth = base.injectEndpoints({
   overrideExisting: false,
 })
 
-export const {
-  useFetchMeQuery,
-  useRegisterMutation,
-  useLoginMutation,
-  useLogoutMutation,
-} = auth
+export const { useFetchMeQuery, useRegisterMutation, useLoginMutation, useLogoutMutation } = auth

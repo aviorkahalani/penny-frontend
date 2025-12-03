@@ -31,11 +31,7 @@ export const Register = () => {
 
         <TextField label="Email" value={email} setValue={setEmail} />
         <TextField label="Name" value={name} setValue={setName} />
-        <PasswordField
-          label="Password"
-          value={password}
-          setValue={setPassword}
-        />
+        <PasswordField label="Password" value={password} setValue={setPassword} />
 
         <Button type="submit" width="full">
           Join Now

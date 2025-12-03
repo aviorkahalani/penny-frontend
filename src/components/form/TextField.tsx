@@ -7,12 +7,7 @@ interface TextFieldProps {
   required?: boolean
 }
 
-export const TextField = ({
-  label,
-  value,
-  setValue,
-  required = true,
-}: TextFieldProps) => {
+export const TextField = ({ label, value, setValue, required = true }: TextFieldProps) => {
   return (
     <Field.Root required={required}>
       <Field.Label>

@@ -12,15 +12,18 @@ export const BudgetPreview = ({ budget }: BudgetPreviewProps) => {
   const navigate = useNavigate()
   const [deleteBudget] = useDeleteBudgetMutation()
 
-  const handleClick = () => {
+  const handleClick = (ev: React.MouseEvent) => {
+    ev.stopPropagation()
     navigate(`/budget/${budget._id}`)
   }
 
-  const handleEdit = () => {
+  const handleEdit = (ev: React.MouseEvent) => {
+    ev.stopPropagation()
     navigate(`/edit/${budget._id}`)
   }
 
-  const handleDelete = () => {
+  const handleDelete = (ev: React.MouseEvent) => {
+    ev.stopPropagation()
     deleteBudget(budget._id)
   }
 

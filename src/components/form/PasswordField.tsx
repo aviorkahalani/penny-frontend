@@ -7,21 +7,14 @@ interface PasswordFieldProps {
   setValue: (newValue: string) => void
 }
 
-export const PasswordField = ({
-  label,
-  value,
-  setValue,
-}: PasswordFieldProps) => {
+export const PasswordField = ({ label, value, setValue }: PasswordFieldProps) => {
   return (
     <Field.Root required>
       <Field.Label>
         {label}
         <Field.RequiredIndicator />
       </Field.Label>
-      <PasswordInput
-        value={value}
-        onChange={(ev) => setValue(ev.target.value)}
-      />
+      <PasswordInput value={value} onChange={(ev) => setValue(ev.target.value)} />
     </Field.Root>
   )
 }

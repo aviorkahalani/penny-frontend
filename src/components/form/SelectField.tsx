@@ -9,23 +9,13 @@ interface SelectFieldProps {
   setValue: (newValue: string) => void
 }
 
-export const SelectField = ({
-  collection,
-  label,
-  value,
-  setValue,
-}: SelectFieldProps) => {
+export const SelectField = ({ collection, label, value, setValue }: SelectFieldProps) => {
   const handleSelect = (ev: SelectValueChangeDetails) => {
     setValue(ev.value.at(0) || '')
   }
 
   return (
-    <Select.Root
-      collection={collection}
-      width="320px"
-      value={[value]}
-      onValueChange={handleSelect}
-    >
+    <Select.Root collection={collection} width="320px" value={[value]} onValueChange={handleSelect}>
       <Select.HiddenSelect />
       <Select.Label>{_.capitalize(label)}</Select.Label>
       <Select.Control>

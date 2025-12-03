@@ -30,11 +30,7 @@ export const Login = () => {
         <FormHeader text="login" />
 
         <TextField label="Email" value={email} setValue={setEmail} />
-        <PasswordField
-          label="Password"
-          value={password}
-          setValue={setPassword}
-        />
+        <PasswordField label="Password" value={password} setValue={setPassword} />
 
         <Button type="submit" width="full">
           Login

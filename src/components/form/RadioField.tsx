@@ -9,12 +9,7 @@ interface RadioFieldProps {
   setValue: (newValue: string) => void
 }
 
-export const RadioField = ({
-  items,
-  label,
-  value,
-  setValue,
-}: RadioFieldProps) => {
+export const RadioField = ({ items, label, value, setValue }: RadioFieldProps) => {
   const handleValueChange = (ev: RadioGroupValueChangeDetails) => {
     setValue(ev.value as string)
   }
