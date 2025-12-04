@@ -35,6 +35,15 @@ export const category = base.injectEndpoints({
       ],
     }),
 
+    fetchCategoriesByType: build.query<
+      Category[],
+      { budgetId: string; type: 'income' | 'expense' | 'saving' }
+    >({
+      query: ({ budgetId, type }) => ({
+        url: `/category/${budgetId}?type=${type}`,
+      }),
+    }),
+
     createCategory: build.mutation<Category, createCategoryBody>({
       query: (body) => ({
         url: '/category',
@@ -65,6 +74,7 @@ export const category = base.injectEndpoints({
 
 export const {
   useFetchCategoriesQuery,
+  useFetchCategoriesByTypeQuery,
   useCreateCategoryMutation,
   useUpdateCategoryMutation,
   useDeleteCategoryMutation,

@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router'
-import { useDeleteBudgetMutation } from '@/store'
-import { Box, Button, Card, Menu, Portal, Text } from '@chakra-ui/react'
-import { DotsThreeIcon, PenIcon, TrashIcon } from '@phosphor-icons/react'
+import { Card, Text } from '@chakra-ui/react'
+import { BudgetActions } from './BudgetActions'
 import type { Budget } from '@/interfaces'
 
 interface BudgetPreviewProps {
@@ -10,21 +9,10 @@ interface BudgetPreviewProps {
 
 export const BudgetPreview = ({ budget }: BudgetPreviewProps) => {
   const navigate = useNavigate()
-  const [deleteBudget] = useDeleteBudgetMutation()
 
   const handleClick = (ev: React.MouseEvent) => {
     ev.stopPropagation()
     navigate(`/budget/${budget._id}`)
-  }
-
-  const handleEdit = (ev: React.MouseEvent) => {
-    ev.stopPropagation()
-    navigate(`/edit/${budget._id}`)
-  }
-
-  const handleDelete = (ev: React.MouseEvent) => {
-    ev.stopPropagation()
-    deleteBudget(budget._id)
   }
 
   const paddedMonth = budget.date.month.toString().padStart(2, '0')
@@ -42,28 +30,7 @@ export const BudgetPreview = ({ budget }: BudgetPreviewProps) => {
         </Text>
       </Card.Body>
       <Card.Footer display="flex" justifyContent="flex-end">
-        <Menu.Root closeOnSelect variant="subtle">
-          <Menu.Trigger asChild>
-            <Button variant="ghost" onClick={(ev) => ev.stopPropagation()}>
-              <DotsThreeIcon />
-            </Button>
-          </Menu.Trigger>
-          <Portal>
-            <Menu.Positioner>
-              <Menu.Content>
-                <Menu.Item value="edit" onClick={handleEdit}>
-                  <PenIcon />
-                  <Box flex="1">Edit</Box>
-                </Menu.Item>
-                <Menu.Separator />
-                <Menu.Item value="delete" color="red" onClick={handleDelete}>
-                  <TrashIcon />
-                  <Box flex="1">Delete</Box>
-                </Menu.Item>
-              </Menu.Content>
-            </Menu.Positioner>
-          </Portal>
-        </Menu.Root>
+        <BudgetActions budget={budget} />
       </Card.Footer>
     </Card.Root>
   )
