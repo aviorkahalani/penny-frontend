@@ -5,7 +5,7 @@ import { App } from '@/App'
 import { Home } from '@/pages/Home'
 import { Error } from '@/pages/Error'
 import { HydrateFallback } from '@/components/global/HydrateFallback'
-import { ProtectedRoute } from '@/components/ProtectedRoute'
+import { ProtectedRoute } from '@/components/global/ProtectedRoute'
 
 export const router = createBrowserRouter([
   {
