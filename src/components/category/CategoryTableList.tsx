@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import { Button, Editable, For, Table } from '@chakra-ui/react'
-import { TrashIcon } from '@phosphor-icons/react'
+import { Box, Button, Editable, For, Menu, Portal, Table } from '@chakra-ui/react'
+import { DotsThreeIcon, TrashIcon } from '@phosphor-icons/react'
 import { CategoryTableFallback } from './CategoryTableFallback'
 import type { Category, Currency, Type } from '@/interfaces'
 
@@ -54,9 +54,27 @@ export const CategoryTableList = ({
             </Editable.Root>
           </Table.Cell>
           <Table.Cell textAlign="end">
-            <Button color="red.400" variant="ghost" onClick={() => handleDelete(category._id)}>
-              <TrashIcon />
-            </Button>
+            <Menu.Root closeOnSelect variant="subtle">
+              <Menu.Trigger asChild>
+                <Button variant="ghost" onClick={(ev) => ev.stopPropagation()}>
+                  <DotsThreeIcon />
+                </Button>
+              </Menu.Trigger>
+              <Portal>
+                <Menu.Positioner>
+                  <Menu.Content>
+                    <Menu.Item
+                      value="delete"
+                      color="red"
+                      onClick={() => handleDelete(category._id)}
+                    >
+                      <TrashIcon />
+                      <Box flex="1">Delete</Box>
+                    </Menu.Item>
+                  </Menu.Content>
+                </Menu.Positioner>
+              </Portal>
+            </Menu.Root>
           </Table.Cell>
         </Table.Row>
       )}

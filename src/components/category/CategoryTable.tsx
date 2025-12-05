@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import {
   useCreateCategoryMutation,
   useDeleteCategoryMutation,
@@ -6,8 +5,11 @@ import {
   useUpdateCategoryMutation,
 } from '@/store'
 import { ErrorMessage } from '../global/ErrorMessage'
-import { Flex, Table, Text, Button } from '@chakra-ui/react'
+import { Table } from '@chakra-ui/react'
 import { CategoryTableList } from './CategoryTableList'
+import { CategoryTableColumnsSettings } from './CategoryTableColumnsSettings'
+import { CategoryTableCaption } from './CategoryTableCaption'
+import { CategoryTableHeader } from './CategoryTableHeader'
 import type { Budget, Category } from '@/interfaces'
 
 interface CategoryTableProps {
@@ -28,7 +30,7 @@ export const CategoryTable = ({ budget, type }: CategoryTableProps) => {
   const handleCreateCategory = async () => {
     await createCategory({
       budgetId: budget._id,
-      name: 'new category',
+      name: 'Click to Edit',
       plannedAmount: 0,
       type,
     })
@@ -49,32 +51,11 @@ export const CategoryTable = ({ budget, type }: CategoryTableProps) => {
   if (isLoading) content = <div>Loading...</div>
 
   if (categories) {
-    const tableCaption = _.capitalize(type + 's')
-
     content = (
-      <Table.Root variant="outline" interactive>
-        <Table.Caption mb="4" captionSide="top" fontSize="md" textAlign="start">
-          <Flex alignItems="center" justifyContent="space-between">
-            <Text>{tableCaption}</Text>
-            <Button onClick={handleCreateCategory} size="xs" variant="outline">
-              Add {_.capitalize(type)}
-            </Button>
-          </Flex>
-        </Table.Caption>
-
-        <Table.ColumnGroup>
-          <Table.Column htmlWidth="60%" />
-          <Table.Column />
-          <Table.Column />
-        </Table.ColumnGroup>
-
-        <Table.Header>
-          <Table.Row>
-            <Table.ColumnHeader>Name</Table.ColumnHeader>
-            <Table.ColumnHeader textAlign="end">Amount</Table.ColumnHeader>
-            <Table.ColumnHeader textAlign="end">Actions</Table.ColumnHeader>
-          </Table.Row>
-        </Table.Header>
+      <Table.Root variant="outline">
+        <CategoryTableCaption type={type} handleCreateCategory={handleCreateCategory} />
+        <CategoryTableColumnsSettings />
+        <CategoryTableHeader />
 
         <Table.Body>
           <CategoryTableList
