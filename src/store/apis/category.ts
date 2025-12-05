@@ -1,5 +1,5 @@
 import { base } from './base'
-import type { Category } from '@/interfaces'
+import type { Category, Type } from '@/interfaces'
 
 interface createCategoryBody {
   budgetId: string
@@ -35,13 +35,17 @@ export const category = base.injectEndpoints({
       ],
     }),
 
-    fetchCategoriesByType: build.query<
-      Category[],
-      { budgetId: string; type: 'income' | 'expense' | 'saving' }
-    >({
+    fetchCategoriesByType: build.query<Category[], { budgetId: string; type: Type }>({
       query: ({ budgetId, type }) => ({
         url: `/category/${budgetId}?type=${type}`,
       }),
+      providesTags: (results) => [
+        { type: 'Category', id: 'LIST' },
+        ...(results?.map(({ _id }) => ({
+          type: 'Category' as const,
+          id: _id,
+        })) || []),
+      ],
     }),
 
     createCategory: build.mutation<Category, createCategoryBody>({
