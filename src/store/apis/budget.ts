@@ -36,12 +36,7 @@ export const budget = base.injectEndpoints({
         method: 'PUT',
         body: budget,
       }),
-      invalidatesTags: (result) => [
-        {
-          type: 'Budget',
-          id: result?._id,
-        },
-      ],
+      invalidatesTags: (result) => [{ type: 'Budget', id: result?._id }],
     }),
 
     deleteBudget: build.mutation<Budget, string>({
