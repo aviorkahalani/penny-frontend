@@ -1,12 +1,13 @@
 import { useParams } from 'react-router'
 import { skipToken } from '@reduxjs/toolkit/query'
 import { useFetchBudgetByIdQuery } from '@/store'
-import { Stack, Flex, Separator } from '@chakra-ui/react'
+import { Stack, Flex, Separator, For } from '@chakra-ui/react'
 import { ErrorMessage } from '@/components/global/ErrorMessage'
 import { BudgetSkeleton } from '@/components/budget/BudgetSkeleton'
 import { BudgetActions } from '@/components/budget/BudgetActions'
 import { CategoryTable } from '@/components/category/CategoryTable'
 import { BudgetHeading } from '@/components/budget/BudgetHeading'
+import type { Type } from '@/interfaces'
 
 export const Budget = () => {
   const { id } = useParams()
@@ -15,6 +16,8 @@ export const Budget = () => {
   if (error) return <ErrorMessage error="Could not show budget..." />
   if (isLoading) return <BudgetSkeleton />
   if (!budget) return null
+
+  const types: Type[] = ['income', 'expense', 'saving']
 
   return (
     <Stack gap="4">
@@ -26,9 +29,16 @@ export const Budget = () => {
       <Separator />
 
       <Stack gap="8">
-        <CategoryTable budget={budget} type="income" />
-        <CategoryTable budget={budget} type="expense" />
-        <CategoryTable budget={budget} type="saving" />
+        <For each={types}>
+          {(type) => (
+            <CategoryTable
+              key={type}
+              budgetId={budget._id}
+              currency={budget.currency}
+              type={type}
+            />
+          )}
+        </For>
       </Stack>
     </Stack>
   )

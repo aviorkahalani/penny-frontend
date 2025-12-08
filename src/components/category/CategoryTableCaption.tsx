@@ -7,7 +7,10 @@ interface CategoryTableCaptionProps {
   handleCreateCategory: () => void
 }
 
-export const CategoryTableCaption = ({ type, handleCreateCategory }: CategoryTableCaptionProps) => {
+export const CategoryTableCaption = ({
+  type,
+  handleCreateCategory,
+}: CategoryTableCaptionProps) => {
   const tableCaption = _.capitalize(type + 's')
 
   return (

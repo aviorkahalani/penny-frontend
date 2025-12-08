@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { Portal, Select } from '@chakra-ui/react'
+import { For, Portal, Select } from '@chakra-ui/react'
 import type { ListCollection, SelectValueChangeDetails } from '@chakra-ui/react'
 
 interface SelectFieldProps {
@@ -15,7 +15,12 @@ export const SelectField = ({ collection, label, value, setValue }: SelectFieldP
   }
 
   return (
-    <Select.Root collection={collection} width="320px" value={[value]} onValueChange={handleSelect}>
+    <Select.Root
+      collection={collection}
+      width="320px"
+      value={[value]}
+      onValueChange={handleSelect}
+    >
       <Select.HiddenSelect />
       <Select.Label>{_.capitalize(label)}</Select.Label>
       <Select.Control>
@@ -29,12 +34,14 @@ export const SelectField = ({ collection, label, value, setValue }: SelectFieldP
       <Portal>
         <Select.Positioner>
           <Select.Content>
-            {collection.items.map((item) => (
-              <Select.Item item={item} key={item.value}>
-                {item.label}
-                <Select.ItemIndicator />
-              </Select.Item>
-            ))}
+            <For each={collection.items}>
+              {(item) => (
+                <Select.Item key={item.value} item={item}>
+                  {item.label}
+                  <Select.ItemIndicator />
+                </Select.Item>
+              )}
+            </For>
           </Select.Content>
         </Select.Positioner>
       </Portal>

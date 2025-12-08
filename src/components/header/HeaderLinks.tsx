@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { Flex, Button, Text } from '@chakra-ui/react'
+import { Flex, Button, Text, For } from '@chakra-ui/react'
 import { NavLink } from 'react-router'
 import { AuthenticatedActions } from './AuthenticatedActions'
 import { UnauthenticatedActions } from './UnauthenticatedActions'
@@ -15,16 +15,24 @@ export const HeaderLinks = ({ user, logout }: HeaderLinksProps) => {
 
   return (
     <Flex as="ul" flexDir={{ base: 'column', md: 'row' }}>
-      {links.map((link) => (
-        <Button as="li" key={link} variant="ghost">
-          <NavLink to={`/${link}`}>
-            {({ isActive }) => <Text color={isActive ? 'blue.600' : ''}>{_.capitalize(link)}</Text>}
-          </NavLink>
-        </Button>
-      ))}
+      <For each={links}>
+        {(link) => (
+          <Button key={link} as="li" variant="ghost">
+            <NavLink to={`/${link}`}>
+              {({ isActive }) => (
+                <Text color={isActive ? 'blue.600' : ''}>{_.capitalize(link)}</Text>
+              )}
+            </NavLink>
+          </Button>
+        )}
+      </For>
 
       <Flex gap="1" flexDir={{ base: 'column', md: 'row' }}>
-        {user ? <AuthenticatedActions user={user} logout={logout} /> : <UnauthenticatedActions />}
+        {user ? (
+          <AuthenticatedActions user={user} logout={logout} />
+        ) : (
+          <UnauthenticatedActions />
+        )}
       </Flex>
     </Flex>
   )

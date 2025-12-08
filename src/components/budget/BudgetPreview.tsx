@@ -30,7 +30,7 @@ export const BudgetPreview = ({ budget }: BudgetPreviewProps) => {
         </Text>
       </Card.Body>
       <Card.Footer display="flex" justifyContent="flex-end">
-        <BudgetActions budget={budget} />
+        <BudgetActions budgetId={budget._id} />
       </Card.Footer>
     </Card.Root>
   )

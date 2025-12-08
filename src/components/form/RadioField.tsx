@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { HStack, Icon, RadioCard } from '@chakra-ui/react'
+import { For, HStack, Icon, RadioCard } from '@chakra-ui/react'
 import type { RadioGroupValueChangeDetails } from '@chakra-ui/react'
 
 interface RadioFieldProps {
@@ -18,17 +18,19 @@ export const RadioField = ({ items, label, value, setValue }: RadioFieldProps) =
     <RadioCard.Root value={value} onValueChange={handleValueChange}>
       <RadioCard.Label>{_.capitalize(label)}</RadioCard.Label>
       <HStack align="stretch">
-        {items.map((item) => (
-          <RadioCard.Item key={item.value} value={item.value}>
-            <RadioCard.ItemHiddenInput />
-            <RadioCard.ItemControl>
-              <Icon fontSize="xl" color="fg.subtle">
-                {item.icon}
-              </Icon>
-              <RadioCard.ItemText>{item.title}</RadioCard.ItemText>
-            </RadioCard.ItemControl>
-          </RadioCard.Item>
-        ))}
+        <For each={items}>
+          {(item) => (
+            <RadioCard.Item key={item.value} value={item.value}>
+              <RadioCard.ItemHiddenInput />
+              <RadioCard.ItemControl>
+                <Icon fontSize="xl" color="fg.subtle">
+                  {item.icon}
+                </Icon>
+                <RadioCard.ItemText>{item.title}</RadioCard.ItemText>
+              </RadioCard.ItemControl>
+            </RadioCard.Item>
+          )}
+        </For>
       </HStack>
     </RadioCard.Root>
   )

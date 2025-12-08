@@ -1,10 +1,10 @@
 import { Table } from '@chakra-ui/react'
 
-export const CategoryTableColumnsSettings = () => {
+export const CategoryTableSettings = () => {
   return (
     <Table.ColumnGroup>
       <Table.Column htmlWidth="70%" />
-      <Table.Column />
+      <Table.Column htmlWidth="20%" />
       <Table.Column />
     </Table.ColumnGroup>
   )
