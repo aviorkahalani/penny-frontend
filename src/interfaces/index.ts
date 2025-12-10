@@ -20,11 +20,14 @@ export interface Credentials {
   password: string
 }
 
+export type Currency = 'NIS' | 'USD'
+export type Type = 'income' | 'expense' | 'saving'
+
 export interface Budget {
   _id: string
   userId: string
   name: string
-  currency: 'NIS' | 'USD'
+  currency: Currency
   notes?: string
   date: {
     year: number
@@ -35,16 +38,25 @@ export interface Budget {
   __v: number
 }
 
-export type Currency = 'NIS' | 'USD'
-export type Type = 'income' | 'expense' | 'saving'
-
 export interface Category {
   _id: string
   userId: string
   budgetId: string
-  type: 'income' | 'expense' | 'saving'
+  type: Type
   name: string
   plannedAmount: number
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface Transaction {
+  _id: string
+  userId: string
+  budgetId: string
+  type: Type
+  description?: string
+  amount: number
+  date: Date
   createdAt: Date
   updatedAt: Date
 }

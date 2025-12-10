@@ -52,7 +52,7 @@ export const CategoryTableRow = ({ category, currency }: CategoryTableRowProps) 
         >
           <Editable.Preview />
           <Editable.Input />
-          <Icon size="sm" color="gray.400">
+          <Icon size="sm" color="gray.500">
             {currency === 'NIS' ? <BiShekel /> : <BiDollar />}
           </Icon>
         </Editable.RootProvider>

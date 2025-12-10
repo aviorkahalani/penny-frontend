@@ -20,8 +20,8 @@ export const Budget = () => {
   const types: Type[] = ['income', 'expense', 'saving']
 
   return (
-    <Stack gap="4">
-      <Flex as="section" justifyContent="space-between" alignItems="end" gap="4">
+    <Stack as="section" gap="4">
+      <Flex justifyContent="space-between" alignItems="end" gap="4">
         <BudgetHeading date={budget.date} name={budget.name} notes={budget.notes} />
         <BudgetActions budgetId={budget._id} />
       </Flex>

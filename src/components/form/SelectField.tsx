@@ -6,10 +6,17 @@ interface SelectFieldProps {
   collection: ListCollection
   label: string
   value: string
+  disabled?: boolean
   setValue: (newValue: string) => void
 }
 
-export const SelectField = ({ collection, label, value, setValue }: SelectFieldProps) => {
+export const SelectField = ({
+  collection,
+  label,
+  value,
+  disabled = false,
+  setValue,
+}: SelectFieldProps) => {
   const handleSelect = (ev: SelectValueChangeDetails) => {
     setValue(ev.value.at(0) || '')
   }
@@ -20,6 +27,7 @@ export const SelectField = ({ collection, label, value, setValue }: SelectFieldP
       width="320px"
       value={[value]}
       onValueChange={handleSelect}
+      disabled={disabled}
     >
       <Select.HiddenSelect />
       <Select.Label>{_.capitalize(label)}</Select.Label>

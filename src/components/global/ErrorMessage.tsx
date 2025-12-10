@@ -7,7 +7,7 @@ interface ErrorMessageProps {
 export const ErrorMessage = ({ error }: ErrorMessageProps) => {
   return (
     <Center>
-      <Text fontFamily="mono" fontSize="sm" color="red.400">
+      <Text fontFamily="mono" fontSize="sm" color="fg.warning">
         {error}
       </Text>
     </Center>

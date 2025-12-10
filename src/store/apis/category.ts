@@ -28,10 +28,7 @@ export const category = base.injectEndpoints({
       }),
       providesTags: (results) => [
         { type: 'Category', id: 'LIST' },
-        ...(results?.map(({ _id }) => ({
-          type: 'Category' as const,
-          id: _id,
-        })) || []),
+        ...(results?.map(({ _id }) => ({ type: 'Category' as const, id: _id })) || []),
       ],
     }),
 
