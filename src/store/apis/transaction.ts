@@ -11,6 +11,11 @@ interface CreateTransactionDto {
   body: Partial<Transaction>
 }
 
+interface UpdateTransactionDto {
+  params: { budgetId: string; transactionId: string }
+  body: Partial<Transaction>
+}
+
 interface DeleteTransactionDto {
   budgetId: string
   transactionId: string
@@ -42,6 +47,15 @@ export const transaction = base.injectEndpoints({
       invalidatesTags: [{ type: 'Transaction', id: 'LIST' }],
     }),
 
+    updateTransaction: build.mutation<Transaction, UpdateTransactionDto>({
+      query: ({ params, body }) => ({
+        url: `/transaction/${params.budgetId}/${params.transactionId}`,
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: [{ type: 'Transaction', id: 'LIST' }],
+    }),
+
     deleteTransaction: build.mutation<void, DeleteTransactionDto>({
       query: ({ budgetId, transactionId }) => ({
         url: `/transaction/${budgetId}/${transactionId}`,
@@ -56,5 +70,6 @@ export const {
   useFetchTransactionsQuery,
   useFetchTransactionByIdQuery,
   useCreateTransactionMutation,
+  useUpdateTransactionMutation,
   useDeleteTransactionMutation,
 } = transaction

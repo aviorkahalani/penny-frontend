@@ -6,7 +6,7 @@ import { InfoMessage } from '@/components/global/InfoMessage'
 import { ErrorMessage } from '@/components/global/ErrorMessage'
 import { TransactionTable } from '@/components/transaction/TransactionTable'
 
-export const Transactions = () => {
+export const Transaction = () => {
   const { budgetId } = useParams<{ budgetId: string }>()
   const {
     data: transactions,

@@ -4,7 +4,6 @@ import { authMiddleware } from './middlewares/auth'
 import { App } from '@/App'
 import { Home } from '@/pages/Home'
 import { Error } from '@/pages/Error'
-import { Transactions } from '@/pages/Transactions'
 import { HydrateFallback } from '@/components/global/HydrateFallback'
 import { ProtectedRoute } from '@/components/global/ProtectedRoute'
 
@@ -38,7 +37,7 @@ export const router = createBrowserRouter([
             children: [
               {
                 path: ':budgetId?',
-                Component: Transactions,
+                Component: (await import('@/pages/Transaction')).Transaction,
               },
             ],
           },
@@ -65,6 +64,10 @@ export const router = createBrowserRouter([
             lazy: async () => ({
               Component: (await import('@/pages/Budget')).Budget,
             }),
+          },
+          {
+            path: 'budget/:budgetId/transaction/:transactionId?',
+            Component: (await import('@/pages/TransactionEditor')).TransactionEditor,
           },
         ],
       },

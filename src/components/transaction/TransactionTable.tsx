@@ -4,7 +4,7 @@ import { TransactionTableCaption } from './TransactionTableCaption'
 import { TransactionTableSettings } from './TransactionTableSettings'
 import { TransactionTableBody } from './TransactionTableBody'
 import type { Transaction } from '@/interfaces'
-import { useCreateTransactionMutation } from '@/store/apis/transaction'
+import { useFetchBudgetByIdQuery } from '@/store'
 
 interface TransactionTableProps {
   budgetId: string
@@ -12,26 +12,20 @@ interface TransactionTableProps {
 }
 
 export const TransactionTable = ({ budgetId, transactions }: TransactionTableProps) => {
-  const [createTransaction] = useCreateTransactionMutation()
+  const { data: budget } = useFetchBudgetByIdQuery(budgetId)
 
-  const handleCreate = async () => {
-    await createTransaction({
-      params: { budgetId },
-      body: {
-        description: 'transaction...',
-        amount: 1000,
-        date: new Date(),
-        type: 'income',
-      },
-    }).unwrap()
-  }
+  if (!budget) return
 
   return (
     <Table.Root variant="outline">
-      <TransactionTableCaption handleCreate={handleCreate} />
+      <TransactionTableCaption budgetId={budgetId} />
       <TransactionTableSettings />
       <TransactionTableHedaer />
-      <TransactionTableBody budgetId={budgetId} transactions={transactions} />
+      <TransactionTableBody
+        budgetId={budgetId}
+        transactions={transactions}
+        currency={budget.currency}
+      />
     </Table.Root>
   )
 }

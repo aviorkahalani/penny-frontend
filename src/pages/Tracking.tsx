@@ -9,18 +9,23 @@ import {
   createListCollection,
 } from '@chakra-ui/react'
 import { SelectField } from '@/components/form/SelectField'
-import { Outlet, useNavigate } from 'react-router'
+import { Outlet, useNavigate, useParams } from 'react-router'
 import { useFetchBudgetsQuery } from '@/store'
 import { ErrorMessage } from '@/components/global/ErrorMessage'
 import { Loader } from '@/components/global/Loader'
 import { InfoMessage } from '@/components/global/InfoMessage'
 
 export const Tracking = () => {
+  const { budgetId: bid } = useParams()
   const navigate = useNavigate()
   const { data: budgets, error, isLoading } = useFetchBudgetsQuery()
   const [budgetId, setBudgetId] = useState<string>('')
 
   useEffect(() => {
+    if (bid && !budgetId) {
+      setBudgetId(bid)
+    }
+
     navigate('' + budgetId)
   }, [budgetId])
 

@@ -1,16 +1,18 @@
 import { Table, For } from '@chakra-ui/react'
 import { TransactionTableFallback } from './TransactionTableFallback'
 import { TransactionTableRow } from './TransactionTableRow'
-import type { Transaction } from '@/interfaces'
+import type { Currency, Transaction } from '@/interfaces'
 
 interface TransactionTableBodyProps {
   budgetId: string
   transactions: Transaction[]
+  currency: Currency
 }
 
 export const TransactionTableBody = ({
   budgetId,
   transactions,
+  currency,
 }: TransactionTableBodyProps) => {
   return (
     <Table.Body>
@@ -20,6 +22,7 @@ export const TransactionTableBody = ({
             key={transaction._id}
             budgetId={budgetId}
             transaction={transaction}
+            currency={currency}
           />
         )}
       </For>

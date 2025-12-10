@@ -1,22 +1,28 @@
 import _ from 'lodash'
-import { Table } from '@chakra-ui/react'
+import { useNavigate } from 'react-router'
+import { Flex, Icon, Table } from '@chakra-ui/react'
 import { useDeleteTransactionMutation } from '@/store/apis/transaction'
 import { TransactionTableRowActions } from './TransactionTableRowActions'
-import type { Transaction } from '@/interfaces'
+import type { Currency, Transaction } from '@/interfaces'
+import { BiDollar, BiShekel } from 'react-icons/bi'
 
 interface TransactionTableRowProps {
   budgetId: string
   transaction: Transaction
+  currency: Currency
 }
 
 export const TransactionTableRow = ({
   budgetId,
   transaction,
+  currency,
 }: TransactionTableRowProps) => {
+  const navigate = useNavigate()
+
   const [deleteTransaction] = useDeleteTransactionMutation()
 
   const handleUpdate = (transactionId: string) => {
-    console.log({ transactionId })
+    navigate(`/budget/${budgetId}/transaction/${transactionId}`)
   }
 
   const handleDelete = (transactionId: string) => {
@@ -38,7 +44,14 @@ export const TransactionTableRow = ({
       <Table.Cell color={typeColor(transaction.type)}>
         {_.capitalize(transaction.type)}
       </Table.Cell>
-      <Table.Cell>{transaction.amount}</Table.Cell>
+      <Table.Cell>
+        <Flex justifyContent="end" alignItems="center">
+          {transaction.amount}
+          <Icon size="sm" color="gray.500">
+            {currency === 'NIS' ? <BiShekel /> : <BiDollar />}
+          </Icon>
+        </Flex>
+      </Table.Cell>
       <Table.Cell>
         <TransactionTableRowActions
           transactionId={transaction._id}
