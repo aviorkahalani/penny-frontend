@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router'
 import { Flex, Icon, Table } from '@chakra-ui/react'
 import { useDeleteTransactionMutation } from '@/store/apis/transaction'
 import { TransactionTableRowActions } from './TransactionTableRowActions'
-import type { Currency, Transaction } from '@/interfaces'
 import { BiDollar, BiShekel } from 'react-icons/bi'
+import type { Currency, Transaction } from '@/interfaces'
 
 interface TransactionTableRowProps {
   budgetId: string

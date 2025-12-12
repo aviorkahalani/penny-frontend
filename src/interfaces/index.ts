@@ -53,6 +53,7 @@ export interface Transaction {
   _id: string
   userId: string
   budgetId: string
+  categoryId: string
   type: Type
   description?: string
   amount: number
