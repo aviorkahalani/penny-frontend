@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { Link } from 'react-router'
-import { Button, Group } from '@chakra-ui/react'
+import { Button, Flex } from '@chakra-ui/react'
 import type { User } from '@/interfaces'
 
 interface AuthenticatedActionsProps {
@@ -10,13 +10,13 @@ interface AuthenticatedActionsProps {
 
 export const AuthenticatedActions = ({ user, logout }: AuthenticatedActionsProps) => {
   return (
-    <Group attached>
+    <Flex gap="1" flexDir={{ base: 'column', md: 'row' }}>
       <Button onClick={logout} variant="outline">
         Logout
       </Button>
       <Button asChild variant="solid">
         <Link to="/profile">{_.capitalize(user.name)}</Link>
       </Button>
-    </Group>
+    </Flex>
   )
 }

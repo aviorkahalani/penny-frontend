@@ -27,13 +27,11 @@ export const HeaderLinks = ({ user, logout }: HeaderLinksProps) => {
         )}
       </For>
 
-      <Flex gap="1" flexDir={{ base: 'column', md: 'row' }}>
-        {user ? (
-          <AuthenticatedActions user={user} logout={logout} />
-        ) : (
-          <UnauthenticatedActions />
-        )}
-      </Flex>
+      {user ? (
+        <AuthenticatedActions user={user} logout={logout} />
+      ) : (
+        <UnauthenticatedActions />
+      )}
     </Flex>
   )
 }

@@ -7,6 +7,7 @@ interface SelectGroupByFieldProps {
   label: string
   value: string
   disabled?: boolean
+  error: boolean
   setValue: (newValue: string) => void
 }
 

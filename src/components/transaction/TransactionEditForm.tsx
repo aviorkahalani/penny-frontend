@@ -2,7 +2,7 @@ import {
   useFetchTransactionByIdQuery,
   useUpdateTransactionMutation,
 } from '@/store/apis/transaction'
-import { Button, createListCollection, Stack } from '@chakra-ui/react'
+import { Button, createListCollection, Field, Stack } from '@chakra-ui/react'
 import { FormHeader } from '../form/FormHeader'
 import { TextField } from '../form/TextField'
 import { useEffect, useState } from 'react'
@@ -33,6 +33,7 @@ export const TransactionEditForm = ({
   const [amount, setAmount] = useState('0')
   const [type, setType] = useState('income')
   const [categoryId, setCategoryId] = useState('')
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     if (transaction) {
@@ -43,8 +44,24 @@ export const TransactionEditForm = ({
     }
   }, [transaction])
 
+  useEffect(() => {
+    if (!categoryId || !categories) return
+
+    const category = categories.find((c) => c._id === categoryId)
+
+    if (!category) return
+
+    if (category.type !== type) {
+      setError(true)
+    } else {
+      setError(false)
+    }
+  }, [categoryId, type])
+
   const handleSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault()
+    if (error) return
+
     await updateTransaction({
       params: { budgetId, transactionId },
       body: {
@@ -78,13 +95,22 @@ export const TransactionEditForm = ({
           { title: 'Saving', value: 'saving', icon: <HandCoinsIcon /> },
         ]}
       />
-      <SelectGroupByField
-        label="select category"
-        value={categoryId}
-        setValue={setCategoryId}
-        collection={collection}
-        disabled={isLoading}
-      />
+      <Field.Root invalid={error}>
+        <SelectGroupByField
+          label="select category"
+          value={categoryId}
+          setValue={setCategoryId}
+          collection={collection}
+          disabled={isLoading}
+          error={error}
+        />
+        {error && (
+          <Field.ErrorText>
+            Category doesn't match type
+            <strong>{type}</strong>
+          </Field.ErrorText>
+        )}
+      </Field.Root>
       <TextField label="description" value={description} setValue={setDescription} />
       <NumberField label="amount" value={amount.toString()} setValue={setAmount} />
 
