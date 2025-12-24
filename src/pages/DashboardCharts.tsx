@@ -45,7 +45,7 @@ export const DashboardCharts = () => {
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} gap="1">
           <For each={cards}>
             {([label, amount]) => (
-              <Card.Root variant="subtle">
+              <Card.Root key={label} variant="subtle">
                 <Card.Header key={label}>
                   <Text fontWeight="bold" fontSize="xs" color="fg.info">
                     {_.capitalize(label)}
@@ -71,29 +71,28 @@ export const DashboardCharts = () => {
 
         <For each={data.spentByCategory}>
           {(c) => (
-            <>
-              <Progress.Root
-                maxW="sm"
-                value={Math.min(c.spent, c.plannedAmount)}
-                max={c.plannedAmount}
-              >
-                <HStack gap="5">
-                  <Progress.Label>{_.capitalize(c.name)}</Progress.Label>
+            <Progress.Root
+              key={c.categoryId}
+              maxW="sm"
+              value={Math.min(c.spent, c.plannedAmount)}
+              max={c.plannedAmount}
+            >
+              <HStack gap="5">
+                <Progress.Label>{_.capitalize(c.name)}</Progress.Label>
 
-                  <Progress.Track flex="1">
-                    <Progress.Range
-                      bg={c.spent > c.plannedAmount ? 'red.500' : 'green.400'}
-                    />
-                  </Progress.Track>
+                <Progress.Track flex="1">
+                  <Progress.Range
+                    bg={c.spent > c.plannedAmount ? 'red.500' : 'green.400'}
+                  />
+                </Progress.Track>
 
-                  <Progress.ValueText
-                    color={c.spent > c.plannedAmount ? 'red.500' : 'gray.600'}
-                  >
-                    {c.spent} / {c.plannedAmount}
-                  </Progress.ValueText>
-                </HStack>
-              </Progress.Root>
-            </>
+                <Progress.ValueText
+                  color={c.spent > c.plannedAmount ? 'red.500' : 'gray.600'}
+                >
+                  {c.spent} / {c.plannedAmount}
+                </Progress.ValueText>
+              </HStack>
+            </Progress.Root>
           )}
         </For>
       </Stack>
