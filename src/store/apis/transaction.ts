@@ -44,7 +44,10 @@ export const transaction = base.injectEndpoints({
         method: 'POST',
         body,
       }),
-      invalidatesTags: [{ type: 'Transaction', id: 'LIST' }],
+      invalidatesTags: [
+        { type: 'Transaction', id: 'LIST' },
+        { type: 'Dashboard', id: 'LIST' },
+      ],
     }),
 
     updateTransaction: build.mutation<Transaction, UpdateTransactionDto>({
@@ -53,7 +56,10 @@ export const transaction = base.injectEndpoints({
         method: 'PUT',
         body,
       }),
-      invalidatesTags: [{ type: 'Transaction', id: 'LIST' }],
+      invalidatesTags: [
+        { type: 'Transaction', id: 'LIST' },
+        { type: 'Dashboard', id: 'LIST' },
+      ],
     }),
 
     deleteTransaction: build.mutation<void, DeleteTransactionDto>({
@@ -61,7 +67,10 @@ export const transaction = base.injectEndpoints({
         url: `/transaction/${budgetId}/${transactionId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: [{ type: 'Transaction', id: 'LIST' }],
+      invalidatesTags: [
+        { type: 'Transaction', id: 'LIST' },
+        { type: 'Dashboard', id: 'LIST' },
+      ],
     }),
   }),
 })

@@ -46,6 +46,12 @@ export const router = createBrowserRouter([
             lazy: async () => ({
               Component: (await import('@/pages/Dashboard')).Dashboard,
             }),
+            children: [
+              {
+                path: ':budgetId?',
+                Component: (await import('@/pages/DashboardCharts')).DashboardCharts,
+              },
+            ],
           },
           {
             path: 'profile',

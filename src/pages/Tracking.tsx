@@ -70,7 +70,9 @@ export const Tracking = () => {
 
         {content}
       </Flex>
+
       <Separator />
+
       <Outlet />
     </Stack>
   )

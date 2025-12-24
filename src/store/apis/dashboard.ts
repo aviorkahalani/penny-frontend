@@ -9,3 +9,5 @@ export const dashboard = base.injectEndpoints({
     }),
   }),
 })
+
+export const { useFetchDashboardDataQuery } = dashboard
