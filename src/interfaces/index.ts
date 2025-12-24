@@ -61,3 +61,21 @@ export interface Transaction {
   createdAt: Date
   updatedAt: Date
 }
+
+export interface DashboardData {
+  summary: {
+    income: number
+    expense: number
+    saving: number
+    net: number
+  }
+  spentByCategory: {
+    categoryId: string
+    name: string
+    plannedAmount: number
+    spent: number
+    txCount: number
+    remaining: number
+    progress: number
+  }[]
+}
