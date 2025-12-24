@@ -54,12 +54,6 @@ export const router = createBrowserRouter([
             ],
           },
           {
-            path: 'profile',
-            lazy: async () => ({
-              Component: (await import('@/pages/auth/Profile')).Profile,
-            }),
-          },
-          {
             path: 'edit/:id?',
             lazy: async () => ({
               Component: (await import('@/pages/BudgetEditor')).BudgetEditor,

@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import { Link } from 'react-router'
 import { Button, Flex } from '@chakra-ui/react'
 import type { User } from '@/interfaces'
 
@@ -14,9 +13,7 @@ export const AuthenticatedActions = ({ user, logout }: AuthenticatedActionsProps
       <Button onClick={logout} variant="outline">
         Logout
       </Button>
-      <Button asChild variant="solid">
-        <Link to="/profile">{_.capitalize(user.name)}</Link>
-      </Button>
+      <Button variant="solid">{_.capitalize(user.name)}</Button>
     </Flex>
   )
 }
